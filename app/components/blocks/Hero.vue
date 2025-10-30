@@ -31,7 +31,7 @@
             Nous appeler : 0262 12 34 56
           </UiBaseButton>
           <UiBaseButton variant="outline" size="lg" class="border-2 border-white/50 text-white hover:bg-white/10 transition-colors">
-            Découvrir notre magasin
+            Venir en magasin
           </UiBaseButton>
         </div>
       </div>

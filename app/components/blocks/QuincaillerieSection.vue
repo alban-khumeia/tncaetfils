@@ -12,29 +12,32 @@
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
-        <div
+        <NuxtLink
             v-for="(category, index) in categories"
             :key="index"
-            class="bg-background border border-border p-6 hover:shadow-lg transition-shadow"
-
+            :to="category.href"
+            class="relative block border border-border hover:shadow-lg transition-shadow overflow-hidden group"
         >
-          <div class="h-12 w-12 bg-primary flex items-center justify-center mb-4">
-            <Icon :name="category.icon" size="20" class="text-white"/>
-          </div>
+          <div class="absolute inset-0 bg-secondary/1"></div>
 
-          <h3 class="text-xl font-heading font-black uppercase text-secondary mb-2">
-            {{ category.title }}
-          </h3>
-          <p class="font-sans font-normal text-foreground leading-relaxed">
-            {{ category.description }}
-          </p>
-        </div>
+          <div class="relative z-10 p-6 flex flex-col h-full">
+            <div class="h-12 w-12 bg-primary flex items-center justify-center mb-4">
+              <Icon :name="category.icon" size="20" class="text-white"/>
+            </div>
+
+            <h3 class="text-xl font-heading font-black uppercase text-foreground mb-2">
+              {{ category.title }}
+            </h3>
+
+            <p class="font-sans font-normal text-muted-foreground leading-relaxed flex-grow">
+              {{ category.description }}
+            </p>
+          </div>
+        </NuxtLink>
       </div>
 
       <div class="text-center">
-        <UiBaseButton
-            class="text-lg px-8 py-3 font-heading font-black uppercase transition-colors bg-secondary hover:bg-secondary-hover hover:text-white"
-        >
+        <UiBaseButton  size="lg">
           Découvrir tous nos rayons
         </UiBaseButton>
       </div>
@@ -43,37 +46,42 @@
 </template>
 
 <script setup lang="ts">
-// 7. Contenu mis à jour avec vos catégories
 const categories = [
   {
-    icon: 'lucide:hard-hat', // Précédemment 'lucide:hammer'
+    icon: 'lucide:hard-hat',
     title: 'MATÉRIELS DE BTP',
     description: 'Ex: Dameuse, compresseur, pilonneuse, etc.',
+    href: '/quincaillerie/materiel-btp',
   },
   {
-    icon: 'lucide:shovel', // Précédemment 'lucide:leaf'
+    icon: 'lucide:shovel',
     title: 'MATÉRIELS DE JARDINAGE',
-    description: 'Ex: Broyeur de végétaux, débroussailleuse, tronçonneuse, etc.',
+    description: 'Ex: Broyeur de végétaux, débroussailleuse, etc.',
+    href: '/quincaillerie/jardinage',
   },
   {
-    icon: 'lucide:wrench', // Identique
+    icon: 'lucide:wrench',
     title: 'OUTILLAGE',
-    description: 'Ex: Clé à griffe, coupe boulons, pince à rivet, marteau, etc.',
+    description: 'Ex: Clé à griffe, coupe boulons, pince à rivet, etc.',
+    href: '/quincaillerie/outillage',
   },
   {
-    icon: 'lucide:layers', // Précédemment 'lucide:paintbrush'
+    icon: 'lucide:layers',
     title: 'AGRÉGATS (VRAC & BIG BAG)',
     description: 'Ex: Gravier, sable, scorie, touvenant',
+    href: '/quincaillerie/agregats',
   },
   {
-    icon: 'lucide:droplet', // Précédemment 'lucide:droplet'
+    icon: 'lucide:droplet',
     title: 'TUYAUX ET ACCESSOIRES PLOMBERIE',
     description: 'Ex: Tuyau PVC, polyéthylène, accessoires',
+    href: '/quincaillerie/plomberie',
   },
   {
-    icon: 'lucide:brick-wall', // Précédemment 'lucide:zap' (électricité)
+    icon: 'lucide:brick-wall',
     title: 'MAÇONNERIE & GROS ŒUVRE',
     description: 'Ex: Blocs, chainage, poteau, bétonnières',
+    href: '/quincaillerie/gros-oeuvre',
   },
 ]
 </script>

@@ -2,7 +2,7 @@
   <section id="contact" class="py-16 md:py-24">
     <div class="container mx-auto px-4">
       <div class="grid lg:grid-cols-2 gap-12">
-        <div class="rounded-lg overflow-hidden shadow-lg h-[400px] lg:h-auto">
+        <div class="overflow-hidden shadow-lg h-[400px] lg:h-auto">
           <iframe
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d59717.89!2d55.4515!3d-20.8823!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjDCsDUyJzU2LjMiUyA1NcKwMjcnMDUuNCJF!5e0!3m2!1sfr!2sre!4v1234567890"
               width="100%"
@@ -16,25 +16,30 @@
         </div>
 
         <div class="flex flex-col justify-center">
-          <h2 class="text-3xl md:text-4xl font-bold text-foreground mb-6 text-balance">Venez nous rencontrer</h2>
+          <h2 class="text-3xl md:text-4xl font-heading leading-tight font-black uppercase text-secondary mb-6 text-balance">Notre Magasin</h2>
 
-          <div class="space-y-6 mb-8">
+          <div class="flex flex-col gap-6 items-start mb-8">
             <div class="flex gap-4">
               <div class="h-12 w-12 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
                 <Icon name="lucide:map-pin" class="h-6 w-6 text-primary"/>
               </div>
-              <div>
+              <a
+                  href="https://www.google.com/maps/place/votre-adresse-ici"
+                  target="_blank"
+                  rel="noopener"
+                  class="hover:text-primary transition-colors"
+              >
                 <h3 class="font-semibold text-foreground mb-1">Adresse</h3>
                 <p class="text-muted-foreground leading-relaxed">
                   123 Route Nationale<br/>
                   97400 Saint-Denis<br/>
                   La Réunion
                 </p>
-              </div>
+              </a>
             </div>
 
             <div class="flex gap-4">
-              <div class="h-12 w-12 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
+              <div class="h-12 w-12 bg-primary/10 flex items-center justify-center flex-shrink-0">
                 <Icon name="lucide:clock" class="h-6 w-6 text-primary"/>
               </div>
               <div>
@@ -48,7 +53,7 @@
             </div>
 
             <div class="flex gap-4">
-              <div class="h-12 w-12 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
+              <div class="h-12 w-12 bg-primary/10 flex items-center justify-center flex-shrink-0">
                 <Icon name="lucide:phone" class="h-6 w-6 text-primary"/>
               </div>
               <div>
@@ -59,15 +64,16 @@
               </div>
             </div>
           </div>
-
-          <div class="rounded-lg overflow-hidden shadow-md">
-            <NuxtImg
-                src="/placeholder.svg?height=300&width=600"
-                alt="Devanture du magasin"
-                class="w-full h-48 object-cover"
-                width="600"
-                height="300"
-            />
+          <div class="mt-4">
+            <UiBaseButton
+                to="https://www.google.com/maps/place/votre-adresse-ici"
+                target="_blank"
+                rel="noopener"
+                leading-icon="lucide:navigation"
+                class="w-full"
+            >
+              Voir l'itinéraire
+            </UiBaseButton>
           </div>
         </div>
       </div>

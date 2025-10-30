@@ -3,18 +3,22 @@
     <div class="container mx-auto px-4">
       <div class="grid lg:grid-cols-2 gap-12 items-center">
         <div>
-          <h2 class="text-3xl md:text-4xl font-bold text-foreground mb-6 text-balance">
+          <h2 class="text-3xl md:text-4xl font-heading leading-tight font-black uppercase text-secondary mb-6 text-balance">
             Notre métier historique : Transport de matériaux
           </h2>
-          <p class="text-lg text-muted-foreground mb-8 leading-relaxed">
+          <p class="text-lg text-foreground mb-8 leading-relaxed">
             Depuis plus de 25 ans, nous assurons le transport de matériaux de construction sur toute La Réunion. Notre
             expertise et notre flotte moderne garantissent une livraison rapide et sécurisée de vos commandes, du
             simple sac de ciment au camion complet de matériaux.
           </p>
 
           <div class="grid sm:grid-cols-2 gap-6 mb-8">
-            <div v-for="(service, index) in services" :key="index" class="flex gap-3">
-              <div class="h-10 w-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
+            <div
+                v-for="(service, index) in services"
+                :key="index"
+                class="flex gap-4 items-start bg-background p-6 border border-border"
+            >
+              <div class="h-10 w-10 bg-primary/10 flex items-center justify-center flex-shrink-0">
                 <Icon :name="service.icon" class="h-5 w-5 text-primary"/>
               </div>
               <div>
@@ -24,17 +28,16 @@
             </div>
           </div>
 
-          <button
-              class="border border-border text-lg px-8 py-3 rounded-md font-medium transition-colors hover:bg-secondary">
-            Nos services de transport
-          </button>
+          <UiBaseButton to="#transport" size="lg">
+            Découvrir notre service de transport
+          </UiBaseButton>
         </div>
 
         <div class="relative">
           <NuxtImg
-              src="/placeholder.svg?height=500&width=600"
+              src="/camion.png"
               alt="Camion de livraison"
-              class="rounded-lg shadow-xl w-full"
+              class="w-full"
               width="600"
               height="500"
           />
