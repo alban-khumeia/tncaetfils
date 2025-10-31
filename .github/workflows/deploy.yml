@@ -37,11 +37,13 @@ jobs:
 
       # ÉTAPE MODIFIÉE : Utilisation de pnpm install
       - name: Install dependencies
-        run: pnpm install --force
+        run: pnpm install
 
       # ÉTAPE MODIFIÉE : Utilisation de pnpm generate
       - name: Static generation
         run: pnpm generate
+        env: # <--- AJOUTEZ CECI
+          NODE_OPTIONS: --openssl-legacy-provider
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
