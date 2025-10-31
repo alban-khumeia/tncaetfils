@@ -4,7 +4,7 @@ name: Deploy Nuxt SSG to GitHub Pages
 on:
   # Se déclenche à chaque push sur la branche 'main' (ou 'master')
   push:
-    branches: [ "main" ] # Adaptez si votre branche principale a un autre nom
+    branches: [ "master" ] # Adaptez si votre branche principale a un autre nom
 
 permissions:
   contents: read
