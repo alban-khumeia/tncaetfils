@@ -4,14 +4,14 @@
       <div class="grid lg:grid-cols-2 gap-12">
         <div class="overflow-hidden shadow-lg h-[400px] lg:h-auto">
           <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d59717.89!2d55.4515!3d-20.8823!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjDCsDUyJzU2LjMiUyA1NcKwMjcnMDUuNCJF!5e0!3m2!1sfr!2sre!4v1234567890"
+              src="https://maps.google.com/maps?width=100%&amp;height=100%&amp;hl=en&amp;q=TNCA et Fils&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"
               width="100%"
               height="100%"
               style="border: 0"
               allowfullscreen
               loading="lazy"
               referrerpolicy="no-referrer-when-downgrade"
-              title="Localisation Matériaux Réunion"
+              title="Localisation TNCA et Fils Quincaillerie à la Ravine des Cabris"
           />
         </div>
 
@@ -24,15 +24,15 @@
                 <Icon name="lucide:map-pin" class="h-6 w-6 text-primary"/>
               </div>
               <a
-                  href="https://www.google.com/maps/place/votre-adresse-ici"
+                  href="https://www.google.com/maps/place/TNCA+ET+FILS/@-21.2872196,55.4789098,17z/data=!3m1!4b1!4m6!3m5!1s0x2182a184761c594f:0x99e7809a330ec409!8m2!3d-21.2872246!4d55.4814847!16s%2Fg%2F11p3hp0p_m"
                   target="_blank"
                   rel="noopener"
                   class="hover:text-primary transition-colors"
               >
                 <h3 class="font-semibold text-foreground mb-1">Adresse</h3>
                 <p class="text-muted-foreground leading-relaxed">
-                  123 Route Nationale<br/>
-                  97400 Saint-Denis<br/>
+                  53 Chemin Anaclet Benard<br/>
+                  97432 Ravine des Cabris<br/>
                   La Réunion
                 </p>
               </a>
@@ -45,8 +45,8 @@
               <div>
                 <h3 class="font-semibold text-foreground mb-1">Horaires d'ouverture</h3>
                 <p class="text-muted-foreground leading-relaxed">
-                  Lundi - Vendredi : 7h00 - 17h00<br/>
-                  Samedi : 8h00 - 12h00<br/>
+                  Lundi - Vendredi : 6h30 - 12h00 / 13h30 - 17h00<br/>
+                  Samedi : 6h30 - 12h00<br/>
                   Dimanche : Fermé
                 </p>
               </div>
@@ -58,15 +58,15 @@
               </div>
               <div>
                 <h3 class="font-semibold text-foreground mb-1">Téléphone</h3>
-                <a href="tel:+262262123456" class="text-primary hover:underline text-lg font-medium">
-                  0262 12 34 56
+                <a href="tel:+262692936580" class="text-secondary hover:underline text-lg font-medium">
+                  06 92 93 65 80
                 </a>
               </div>
             </div>
           </div>
           <div class="mt-4">
             <UiBaseButton
-                to="https://www.google.com/maps/place/votre-adresse-ici"
+                href="https://www.google.com/maps/place/TNCA+ET+FILS/@-21.2872196,55.4789098,17z/data=!3m1!4b1!4m6!3m5!1s0x2182a184761c594f:0x99e7809a330ec409!8m2!3d-21.2872246!4d55.4814847!16s%2Fg%2F11p3hp0p_m"
                 target="_blank"
                 rel="noopener"
                 leading-icon="lucide:navigation"

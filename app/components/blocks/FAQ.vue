@@ -1,54 +1,44 @@
-<template>\
-  <section class="py-16 md:py-24 bg-background">
+<template>
+  <section class="py-12 md:py-16 bg-muted">
     <div class="container mx-auto px-4">
       <div class="text-center mb-12">
-      <h2 class="text-3xl md:text-4xl font-bold text-foreground mb-4 text-balance">
-      Questions fréquentes
-      </h2>\
-      <p class="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-        Tout ce que vous devez savoir sur nos services de quincaillerie et transport à La Réunion.
-      </p>
-    </div>
-
-    <div class="max-w-3xl mx-auto space-y-4">
-      <div
-          v-for="(faq, index) in faqs
-      "
-      :key="index"
-      class="border border-border rounded-lg overflow-hidden bg-card"
-      >
-      <button
-      @click="toggleFaq(index)"
-      class="w-full px-6 py-5 flex items-center justify-between text-left hover:bg-muted/50 transition-colors"
-      :aria-expanded="openIndex === index"
-      >
-      <h3 class="font-semibold text-foreground pr-4 text-balance">
-        {{ faq.question }}
-      </h3>\
-      <Icon
-      name="lucide:chevron-down"
-      class="h-5 w-5 text-muted-foreground flex-shrink-0 transition-transform"
-      :class="{ 'rotate-180': openIndex === index }"
-      />
-      </button>
-      <div
-          v-show="openIndex === index"
-          class="px-6 pb-5 text-muted-foreground leading-relaxed"
-      >
-        <p class="text-pretty">{{ faq.answer }}</p>
+        <h2 class="text-3xl md:text-4xl font-heading font-black uppercase text-foreground mb-4 text-balance">
+          Questions fréquentes
+        </h2>
+        <p class="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+          Tout ce que vous devez savoir sur nos services de quincaillerie et transport à La Réunion.
+        </p>
       </div>
-      \
-    </div>
-    </div>
-    \
-    <div class="text-center mt-12">
-      <p class="text-muted-foreground mb-4">Vous avez d'autres questions ?</p>\
-      <button class="bg-primary hover:bg-primary
-      /90 text-primary-foreground px-6 py-3 rounded-md font-medium transition-colors inline-flex items-center gap-2">
-      <Icon name="lucide:phone" class="h-5 w-5"/>
-      Contactez-nous
-      </button>
-    </div>
+
+      <div class="max-w-3xl mx-auto space-y-4">
+        <div
+            v-for="(faq, index) in faqs"
+            :key="index"
+            class="border border-border overflow-hidden bg-background"
+        >
+          <button
+              @click="toggleFaq(index)"
+              class="w-full px-6 py-5 flex items-center justify-between text-left hover:bg-muted/30 transition-colors"
+              :aria-expanded="openIndex === index"
+          >
+            <h3 class="text-lg font-heading font-bold text-foreground pr-4 text-balance">
+              {{ faq.question }}
+            </h3>
+            <Icon
+                name="lucide:chevron-down"
+                class="h-5 w-5 text-muted-foreground flex-shrink-0 transition-transform"
+                :class="{ 'rotate-180': openIndex === index }"
+            />
+          </button>
+
+          <div
+              v-show="openIndex === index"
+              class="px-6 pb-5 text-muted-foreground leading-relaxed"
+          >
+            <p class="text-pretty">{{ faq.answer }}</p>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 </template>
@@ -65,7 +55,7 @@ const toggleFaq = (index: number) => {
 const faqs = [
   {
     question: 'Quels sont vos horaires d\'ouverture à La Réunion ?',
-    answer: 'Notre magasin de quincaillerie est ouvert du lundi au vendredi de 7h à 17h et le samedi de 7h à 12h. Notre service de transport et livraison est disponible du lundi au vendredi de 6h à 18h pour répondre aux besoins des chantiers.'
+    answer: 'Notre magasin de quincaillerie est ouvert du lundi au vendredi de 6h30 à 12h puis de 13h30 à 17h et le samedi de 6h30 à 12h. Notre service de transport et livraison est disponible du lundi au vendredi de 6h à 18h pour répondre aux besoins des chantiers.'
   },
   {
     question: 'Livrez-vous partout à La Réunion ?',

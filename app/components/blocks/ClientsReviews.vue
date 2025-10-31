@@ -1,11 +1,11 @@
 <template>
-  <section class="py-16 md:py-24 bg-card">
+  <section class="py-16 md:py-24 bg-secondary">
     <div class="container mx-auto px-4">
       <div class="text-center mb-12">
-        <h2 class="text-3xl md:text-4xl font-bold text-foreground mb-4 text-balance">
+        <h2 class="text-3xl md:text-4xl font-heading font-black uppercase text-background mb-4 text-balance">
           Avis vérifiés de nos clients
         </h2>
-        <p class="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+        <p class="font-sans text-lg text-background/80 max-w-2xl mx-auto leading-relaxed">
           Découvrez ce que nos clients professionnels et particuliers pensent de nos services.
         </p>
       </div>
@@ -14,15 +14,15 @@
         <div
             v-for="(review, index) in reviews"
             :key="index"
-            class="bg-background border border-border rounded-lg p-6 hover:shadow-lg transition-shadow"
+            class="bg-foreground border border-secondary p-6 hover:shadow-lg transition-shadow"
         >
           <div class="flex items-center gap-4 mb-4">
-            <div class="h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
-              <Icon name="lucide:user" class="h-6 w-6 text-primary"/>
+            <div class="h-12 w-12 bg-primary flex items-center justify-center flex-shrink-0">
+              <Icon name="lucide:user" class="h-5 w-5 text-background"/>
             </div>
             <div>
-              <h3 class="font-semibold text-foreground">{{ review.name }}</h3>
-              <p class="text-sm text-muted-foreground">{{ review.role }}</p>
+              <h3 class="font-sans font-semibold text-background">{{ review.name }}</h3>
+              <p class="font-sans text-sm text-background/80">{{ review.role }}</p>
             </div>
           </div>
 
@@ -30,28 +30,29 @@
             <Icon
                 v-for="star in 5"
                 :key="star"
-                name="lucide:star"
-                class="h-5 w-5 fill-accent text-accent"
+                name="heroicons-solid:star"
+                class="fill-primary text-primary"
+                size="20"
             />
           </div>
 
-          <p class="text-muted-foreground leading-relaxed italic">
+          <p class="font-sans text-background/90 leading-relaxed italic">
             "{{ review.comment }}"
           </p>
 
-          <div class="mt-4 pt-4 border-t border-border">
-            <div class="flex items-center gap-2 text-sm text-muted-foreground">
-              <Icon name="lucide:calendar" class="h-4 w-4"/>
-              <span>{{ review.date }}</span>
+          <div class="mt-4 pt-4 border-t border-secondary">
+            <div class="flex items-center gap-2 text-sm text-background/80">
+              <Icon name="lucide:calendar" class="h-5 w-5"/>
+              <span class="font-sans">{{ review.date }}</span>
             </div>
           </div>
         </div>
       </div>
 
       <div class="text-center mt-12">
-        <div class="inline-flex items-center gap-2 text-muted-foreground">
+        <div class="inline-flex items-center gap-2 text-background/80">
           <Icon name="lucide:shield-check" class="h-5 w-5 text-primary"/>
-          <span class="font-medium">Avis certifiés et vérifiés</span>
+          <span class="font-sans font-medium">Avis certifiés et vérifiés</span>
         </div>
       </div>
     </div>
@@ -59,6 +60,7 @@
 </template>
 
 <script setup lang="ts">
+// Le script reste inchangé
 const reviews = [
   {
     name: 'Jean-Marc L.',

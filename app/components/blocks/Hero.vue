@@ -23,14 +23,18 @@
           Matériaux, BTP, Jardin : L'expertise transport en plus
         </h1>
         <p class="text-lg md:text-xl text-white font-sans mb-8 leading-relaxed text-balance">
-          Votre nouveau guichet unique pour tous vos chantiers à La Réunion. Conseil d'experts et stock disponible
+          Votre nouveau guichet unique pour tous vos chantiers à la Ravine des Cabris. Conseil d'experts et stock disponible
           immédiatement.
         </p>
         <div class="flex flex-col sm:flex-row gap-4">
-          <UiBaseButton leading-icon="lucide:phone" size="lg">
-            Nous appeler : 0262 12 34 56
+          <UiBaseButton leading-icon="lucide:phone" size="lg" href="tel:+262692936580">
+            Nous appeler : 06 92 93 65 80
           </UiBaseButton>
-          <UiBaseButton variant="outline" size="lg" class="border-2 border-white/50 text-white hover:bg-white/10 transition-colors">
+          <UiBaseButton
+              href="#contact"
+              variant="outline"
+              size="lg"
+              class="border-2 border-white/50 text-white hover:bg-white/10 transition-colors">
             Venir en magasin
           </UiBaseButton>
         </div>

@@ -74,7 +74,7 @@
         </div>
 
         <div class="flex items-center gap-4">
-          <UiBaseButton class="h-12" trailing-icon="lucide:arrow-right">
+          <UiBaseButton class="h-12" trailing-icon="lucide:arrow-right" to="/contact">
             Demander un devis
           </UiBaseButton>
           <button

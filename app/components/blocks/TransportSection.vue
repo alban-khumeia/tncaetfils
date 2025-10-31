@@ -28,8 +28,8 @@
             </div>
           </div>
 
-          <UiBaseButton to="#transport" size="lg">
-            Découvrir notre service de transport
+          <UiBaseButton size="lg" to="/transport-materiaux">
+            Découvrir Notre Service de Transport
           </UiBaseButton>
         </div>
 
@@ -52,7 +52,7 @@ const services = [
   {
     icon: 'lucide:truck',
     title: 'Flotte moderne',
-    description: 'Camions adaptés à tous types de matériaux',
+    description: '6 camions adaptés à tous types de matériaux',
   },
   {
     icon: 'lucide:package',

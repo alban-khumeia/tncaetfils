@@ -11,25 +11,31 @@
         </p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 mb-8 lg:auto-rows-[12rem]">
+
         <NuxtLink
             v-for="(category, index) in categories"
             :key="index"
             :to="category.href"
-            class="relative block border border-border hover:shadow-lg transition-shadow overflow-hidden group"
+            class="relative block border border-border overflow-hidden group transition-shadow hover:shadow-lg"
+            :class="category.gridClasses"
         >
-          <div class="absolute inset-0 bg-secondary/1"></div>
+          <div class="absolute inset-0 bg-muted/20"></div>
 
-          <div class="relative z-10 p-6 flex flex-col h-full">
-            <div class="h-12 w-12 bg-primary flex items-center justify-center mb-4">
-              <Icon :name="category.icon" size="20" class="text-white"/>
-            </div>
+          <NuxtImg
+              :src="category.image"
+              :alt="category.title"
+              class="absolute inset-0 w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-300"
+              placeholder
+          />
 
-            <h3 class="text-xl font-heading font-black uppercase text-foreground mb-2">
+          <div class="absolute inset-0 bg-gradient-to-t from-foreground/70 to-transparent"></div>
+
+          <div class="relative z-10 flex flex-col justify-end h-full p-6 text-background drop-shadow">
+            <h3 class="font-heading font-black uppercase text-xl mb-1 leading-tight">
               {{ category.title }}
             </h3>
-
-            <p class="font-sans font-normal text-muted-foreground leading-relaxed flex-grow">
+            <p class="font-sans font-normal text-background/90 text-sm md:text-base">
               {{ category.description }}
             </p>
           </div>
@@ -37,8 +43,8 @@
       </div>
 
       <div class="text-center">
-        <UiBaseButton  size="lg">
-          Découvrir tous nos rayons
+        <UiBaseButton size="lg" to="/quincaillerie">
+          Découvrir Tous nos Rayons
         </UiBaseButton>
       </div>
     </div>
@@ -48,40 +54,46 @@
 <script setup lang="ts">
 const categories = [
   {
-    icon: 'lucide:hard-hat',
+    image: '/images/btp.png',
     title: 'MATÉRIELS DE BTP',
-    description: 'Ex: Dameuse, compresseur, pilonneuse, etc.',
+    description: 'Dameuse, compresseur, pilonneuse, etc.',
     href: '/quincaillerie/materiel-btp',
+    gridClasses: 'lg:col-span-2 lg:row-span-2 min-h-[24rem]', // Carte 1: 2x2
   },
   {
-    icon: 'lucide:shovel',
+    image: '/images/jardinage.png',
     title: 'MATÉRIELS DE JARDINAGE',
-    description: 'Ex: Broyeur de végétaux, débroussailleuse, etc.',
+    description: 'Broyeur de végétaux, débroussailleuse.',
     href: '/quincaillerie/jardinage',
+    gridClasses: 'lg:col-span-1 lg:row-span-2 min-h-[24rem]', // Carte 2: 1x2
   },
   {
-    icon: 'lucide:wrench',
+    image: '/images/outillage.png',
     title: 'OUTILLAGE',
-    description: 'Ex: Clé à griffe, coupe boulons, pince à rivet, etc.',
+    description: 'Clé à griffe, coupe boulons, pince à rivet.',
     href: '/quincaillerie/outillage',
+    gridClasses: 'lg:col-span-1 lg:row-span-1 min-h-[12rem]', // Carte 3: 1x1
   },
   {
-    icon: 'lucide:layers',
-    title: 'AGRÉGATS (VRAC & BIG BAG)',
-    description: 'Ex: Gravier, sable, scorie, touvenant',
+    image: '/images/agregats.png',
+    title: 'AGRÉGATS',
+    description: 'Gravier, sable, scorie, touvenant.',
     href: '/quincaillerie/agregats',
+    gridClasses: 'lg:col-span-1 lg:row-span-1 min-h-[12rem]', // Carte 4: 1x1
   },
   {
-    icon: 'lucide:droplet',
-    title: 'TUYAUX ET ACCESSOIRES PLOMBERIE',
-    description: 'Ex: Tuyau PVC, polyéthylène, accessoires',
+    image: '/images/plomberie.png',
+    title: 'PLOMBERIE',
+    description: 'Tuyau PVC, polyéthylène, accessoires.',
     href: '/quincaillerie/plomberie',
+    gridClasses: 'lg:col-span-2 lg:row-span-1 min-h-[12rem]', // Carte 5: 2x1
   },
   {
-    icon: 'lucide:brick-wall',
+    image: '/images/maconnerie.png',
     title: 'MAÇONNERIE & GROS ŒUVRE',
-    description: 'Ex: Blocs, chainage, poteau, bétonnières',
+    description: 'Blocs, chainage, poteau, bétonnières.',
     href: '/quincaillerie/gros-oeuvre',
+    gridClasses: 'lg:col-span-2 lg:row-span-1 min-h-[12rem]', // Carte 6: 2x1
   },
 ]
 </script>
