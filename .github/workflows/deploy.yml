@@ -52,6 +52,7 @@ jobs:
         run: pnpm generate
         env: # <--- AJOUTEZ CECI
           NODE_OPTIONS: --openssl-legacy-provider
+          NUXT_APP_BASE_URL: /tncaetfils/
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
