@@ -37,7 +37,7 @@ jobs:
 
       # ÉTAPE MODIFIÉE : Utilisation de pnpm install
       - name: Install dependencies
-        run: pnpm install
+        run: pnpm install --force
 
       # ÉTAPE MODIFIÉE : Utilisation de pnpm generate
       - name: Static generation
