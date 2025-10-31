@@ -18,23 +18,31 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      # Note : si vous utilisez pnpm ou yarn, changez les commandes ci-dessous
+      # ÉTAPE AJOUTÉE : Installation de pnpm
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: 10 # Mettez ici votre version de pnpm si vous en avez une spécifique
+
+      # ÉTAPE MODIFIÉE : Setup Node.js et activation du cache pnpm
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: "22" # Mettez la version de Node que vous utilisez
+          node-version: "18" # Assurez-vous que c'est votre version de Node
+          cache: 'pnpm' # Indique à setup-node de mettre en cache les dépendances pnpm
 
+      # ÉTAPE MODIFIÉE : Utilisation de pnpm install
       - name: Install dependencies
-        run: pnpm install # ou pnpm install / yarn install
+        run: pnpm install
 
+      # ÉTAPE MODIFIÉE : Utilisation de pnpm generate
       - name: Static generation
-        run: pnpm run generate # ou pnpm generate / yarn generate
+        run: pnpm generate
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # C'est le dossier généré par 'nuxt generate'
-          path: .output/public
+          path: .output/public # Ne change pas
 
   deploy:
     environment:
