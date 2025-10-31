@@ -36,5 +36,13 @@ export default defineNuxtConfig({
                 weights: ['400', '700', '900']
             }
         ]
-    }
+    },
+
+    ssr: true,
+    nitro: {
+        preset: 'static'
+    },
+    app: {
+        baseURL: '/'
+    },
 })

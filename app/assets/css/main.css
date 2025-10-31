@@ -1,0 +1,20 @@
+@import "tailwindcss";
+
+@theme {
+    --font-sans: "Roboto", system-ui, sans-serif;
+    --font-heading: "Lexend", system-ui, sans-serif;
+
+    --color-primary: #d92323;
+    --color-primary-hover: #b91c1c;
+    --color-secondary: #111827;
+    --color-secondary-hover: #172032;
+    --color-background: #ffffff;
+    --color-foreground: #374151;
+    --color-muted: #f9f9f9;
+    --color-muted-foreground: #6b7280;
+    --color-border: #e5e7eb;
+
+    --radius-sm: 0.25rem;
+    --radius-md: 0.375rem;
+    --radius-lg: 0.5rem;
+}
