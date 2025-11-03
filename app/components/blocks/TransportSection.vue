@@ -66,8 +66,8 @@ const services = [
   },
   {
     icon: 'lucide:shield',
-    title: 'Assurance complète',
-    description: 'Vos matériaux protégés pendant le transport',
+    title: 'Transport Garanti & Conforme',
+    description: 'Capacité > 3T5. Couverture complète via notre assurance RC Pro',
   },
 ]
 </script>

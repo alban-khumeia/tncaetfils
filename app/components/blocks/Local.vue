@@ -58,8 +58,8 @@
               </div>
               <div>
                 <h3 class="font-semibold text-foreground mb-1">Téléphone</h3>
-                <a href="tel:+262692936580" class="text-secondary hover:underline text-lg font-medium">
-                  06 92 93 65 80
+                <a href="tel:+262693034669" class="text-secondary hover:underline text-lg font-medium">
+                  06 93 034 669
                 </a>
               </div>
             </div>

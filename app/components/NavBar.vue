@@ -15,7 +15,7 @@
                 v-if="!isScrolled"
                 src="/1.png"
                 alt="Matériaux Réunion"
-                class="h-14 w-auto drop-shadow-2xl"
+                class="h-18 w-auto drop-shadow-2xl"
                 width="1920"
                 height="1080"
             />
@@ -23,7 +23,7 @@
                 v-else
                 src="/2.png"
                 alt="Matériaux Réunion"
-                class="h-14 w-auto"
+                class="h-18 w-auto"
                 width="1920"
                 height="1080"
             />
