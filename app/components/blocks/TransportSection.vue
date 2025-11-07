@@ -1,8 +1,19 @@
 <template>
   <section id="transport" class="py-16 md:py-24 bg-muted">
     <div class="container mx-auto px-4">
-      <div class="grid lg:grid-cols-2 gap-12 items-center">
-        <div>
+      <div class="grid md:grid-cols-2 gap-12 items-start">
+
+        <div class="relative md:order-2">
+          <NuxtImg
+              src="/camion.png"
+              alt="Camion de livraison"
+              class="w-full"
+              width="600"
+              height="500"
+          />
+        </div>
+
+        <div class="md:order-1">
           <h2 class="text-3xl md:text-4xl font-heading leading-tight font-black uppercase text-secondary mb-6 text-balance">
             Notre métier historique : Transport de matériaux
           </h2>
@@ -13,19 +24,13 @@
           </p>
 
           <div class="grid sm:grid-cols-2 gap-6 mb-8">
-            <div
+            <UiBaseCard
                 v-for="(service, index) in services"
                 :key="index"
-                class="flex gap-4 items-start bg-background p-6 border border-border"
-            >
-              <div class="h-10 w-10 bg-primary/10 flex items-center justify-center flex-shrink-0">
-                <Icon :name="service.icon" class="h-5 w-5 text-primary"/>
-              </div>
-              <div>
-                <h3 class="font-semibold text-foreground mb-1">{{ service.title }}</h3>
-                <p class="text-sm text-muted-foreground leading-relaxed">{{ service.description }}</p>
-              </div>
-            </div>
+                :icon="service.icon"
+                :title="service.title"
+                :description="service.description"
+            />
           </div>
 
           <UiBaseButton size="lg" to="/transport-materiaux">
@@ -33,41 +38,33 @@
           </UiBaseButton>
         </div>
 
-        <div class="relative">
-          <NuxtImg
-              src="/camion.png"
-              alt="Camion de livraison"
-              class="w-full"
-              width="600"
-              height="500"
-          />
-        </div>
       </div>
     </div>
   </section>
 </template>
 
 <script setup lang="ts">
+// CHANGEMENT : Descriptions rééquilibrées pour une harmonie visuelle
 const services = [
   {
     icon: 'lucide:truck',
     title: 'Flotte moderne',
-    description: '6 camions adaptés à tous types de matériaux',
+    description: '6 camions adaptés, du simple sac au camion complet.',
   },
   {
     icon: 'lucide:package',
     title: 'Chargement sécurisé',
-    description: 'Manutention professionnelle de vos matériaux',
+    description: 'Manutention professionnelle de vos matériaux par nos experts.',
   },
   {
     icon: 'lucide:clock',
     title: 'Livraison rapide',
-    description: 'Délais respectés sur toute l\'île',
+    description: 'Délais respectés et couverture complète de toute l\'île.',
   },
   {
     icon: 'lucide:shield',
-    title: 'Transport Garanti & Conforme',
-    description: 'Capacité > 3T5. Couverture complète via notre assurance RC Pro',
+    title: 'Transport Garanti', // Titre raccourci
+    description: 'Capacité > 3T5. Couverture complète via notre assurance RC Pro.',
   },
 ]
 </script>

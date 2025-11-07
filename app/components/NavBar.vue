@@ -30,8 +30,8 @@
           </a>
 
         <nav class="hidden md:flex items-center gap-6">
-          <a
-              href="#quincaillerie"
+          <NuxtLink
+              to="/quincaillerie"
               class="transition-colors font-heading text-lg font-bold"
               :class="{
               'text-secondary hover:text-red-600': isScrolled,
@@ -39,9 +39,9 @@
             }"
           >
             Quincaillerie
-          </a>
-          <a
-              href="#transport"
+          </NuxtLink>
+          <NuxtLink
+              to="/transport-materiaux"
               class="transition-colors font-heading text-lg font-bold"
               :class="{
               'text-secondary hover:text-red-600': isScrolled,
@@ -49,9 +49,9 @@
             }"
           >
             Transport
-          </a>
-          <a
-              href="#qui-sommes-nous"
+          </NuxtLink>
+          <NuxtLink
+              to="/qui-sommes-nous"
               class="transition-colors font-heading text-lg font-bold"
               :class="{
               'text-secondary hover:text-red-600': isScrolled,
@@ -59,9 +59,19 @@
             }"
           >
             Qui sommes-nous
-          </a>
-          <a
-              href="#contact"
+          </NuxtLink>
+          <NuxtLink
+              to="/catalogues"
+              class="transition-colors font-heading text-lg font-bold"
+              :class="{
+              'text-secondary hover:text-red-600': isScrolled,
+              'text-white hover:text-white/80 drop-shadow-lg': !isScrolled
+            }"
+          >
+            Catalogues
+          </NuxtLink>
+          <NuxtLink
+              to="/contact"
               class="transition-colors font-heading text-lg font-bold"
               :class="{
               'text-secondary hover:text-red-600': isScrolled,
@@ -69,7 +79,7 @@
             }"
           >
             Contact
-          </a>
+          </NuxtLink>
         </nav>
         </div>
 
@@ -90,24 +100,44 @@
 </template>
 
 <script setup lang="ts">
-import {ref, onMounted, onUnmounted} from 'vue'
+import {ref, onMounted, onUnmounted, computed} from 'vue'
+// 1. Importez useRoute pour accéder à la route actuelle
+import {useRoute} from '#imports'
 
-// 1. L'état réactif
-const isScrolled = ref(false)
-// Seuil de scroll (en pixels) avant que la navbar ne change
+// --- Configuration de l'edge-case ---
+const route = useRoute()
+// 2. Listez les chemins (routes) qui doivent *toujours* avoir la navbar "scrolled"
+const forcedScrollPages = [
+  '/catalogues',
+    '/contact'
+]
+
+// 3. Un computed qui vérifie si on est sur une de ces pages
+const isForceScrolled = computed(() => {
+  return forcedScrollPages.includes(route.path)
+})
+
+// --- Logique de Scroll ---
+// 4. On renomme votre ref pour qu'il suive UNIQUEMENT l'état du scroll
+const isScrolledByWindow = ref(false)
 const scrollThreshold = 10
 
-// 2. La fonction qui met à jour l'état
+// 5. La fonction met à jour *uniquement* le ref du scroll
 const handleScroll = () => {
-  if (window.scrollY > scrollThreshold) {
-    isScrolled.value = true
-  } else {
-    isScrolled.value = false
-  }
+  isScrolledByWindow.value = window.scrollY > scrollThreshold;
 }
 
-// 3. L'écouteur d'événement (côté client uniquement)
+// 6. L'ÉTAT FINAL (utilisé par votre template)
+// C'est "true" SI on est sur une page forcée OU SI l'utilisateur a scrollé
+const isScrolled = computed(() => {
+  return isForceScrolled.value || isScrolledByWindow.value
+})
+
+// 7. L'écouteur d'événement
 onMounted(() => {
+  // Important : Vérifiez l'état du scroll dès le chargement
+  // (au cas où l'utilisateur recharge la page en milieu de page)
+  handleScroll()
   window.addEventListener('scroll', handleScroll)
 })
 

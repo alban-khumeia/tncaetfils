@@ -30,22 +30,22 @@
           </h4>
           <ul class="space-y-2 text-sm">
             <li>
-              <a href="#quincaillerie" class="opacity-90 hover:opacity-100 hover:underline drop-shadow">
+              <a href="/#quincaillerie" class="opacity-90 hover:opacity-100 hover:underline drop-shadow">
                 Quincaillerie
               </a>
             </li>
             <li>
-              <a href="#transport" class="opacity-90 hover:opacity-100 hover:underline drop-shadow">
+              <a href="/#transport" class="opacity-90 hover:opacity-100 hover:underline drop-shadow">
                 Transport
               </a>
             </li>
             <li>
-              <a href="#qui-sommes-nous" class="opacity-90 hover:opacity-100 hover:underline drop-shadow">
+              <a href="/#qui-sommes-nous" class="opacity-90 hover:opacity-100 hover:underline drop-shadow">
                 Qui sommes-nous
               </a>
             </li>
             <li>
-              <a href="#contact" class="opacity-90 hover:opacity-100 hover:underline drop-shadow">
+              <a href="/#contact" class="opacity-90 hover:opacity-100 hover:underline drop-shadow">
                 Contact
               </a>
             </li>
@@ -85,55 +85,44 @@
         </div>
       </div>
 
-      <div class="grid md:grid-cols-2 gap-8 mb-12 border-t border-background/20 pt-8">
-        <div class="md:col-span-1">
-          <h4 class="font-heading font-black uppercase text-base mb-3 drop-shadow text-center">
+      <div class="grid md:grid-cols-2 gap-8 mb-8">
+
+        <div class="md:col-span-1 text-center">
+          <h4 class="font-heading font-black uppercase text-base mb-2 drop-shadow">
             Tarification
           </h4>
-          <p class="font-sans text-sm opacity-90 leading-relaxed drop-shadow mb-2 text-center">
+          <p class="font-sans text-sm opacity-90 drop-shadow">
             Tarifs HT selon la charte de bonne pratique.
           </p>
-          <ul class="space-y-1 text-sm text-center">
-            <li class="flex items-center justify-center gap-2 opacity-90 drop-shadow">
-              <Icon name="lucide:hourglass" class="h-4 w-4 flex-shrink-0"/>
-              À l'heure
-            </li>
-            <li class="flex items-center justify-center gap-2 opacity-90 drop-shadow">
-              <Icon name="lucide:calendar-days" class="h-4 w-4 flex-shrink-0"/>
-              À la journée
-            </li>
-            <li class="flex items-center justify-center gap-2 opacity-90 drop-shadow">
-              <Icon name="lucide:ruler" class="h-4 w-4 flex-shrink-0"/>
-              Au kilomètre
-            </li>
-          </ul>
+          <p class="font-sans text-sm opacity-90 drop-shadow mt-1">
+            (
+            <Icon name="lucide:hourglass" class="h-4 w-4 inline relative top-px"/>
+            Heure /
+            <Icon name="lucide:calendar-days" class="h-4 w-4 inline relative top-px"/>
+            Journée /
+            <Icon name="lucide:ruler" class="h-4 w-4 inline relative top-px"/>
+            Kilomètre)
+          </p>
         </div>
 
-        <div class="md:col-span-1">
-          <h4 class="font-heading font-black uppercase text-base mb-3 drop-shadow text-center">
+        <div class="md:col-span-1 text-center">
+          <h4 class="font-heading font-black uppercase text-base mb-2 drop-shadow">
             Paiement
           </h4>
-          <ul class="space-y-1 text-sm text-center">
-            <li class="flex items-center justify-center gap-2 opacity-90 drop-shadow">
-              <Icon name="lucide:credit-card" class="h-4 w-4 flex-shrink-0"/>
-              Carte Bancaire (CB)
-            </li>
-            <li class="flex items-center justify-center gap-2 opacity-90 drop-shadow">
-              <Icon name="lucide:wallet" class="h-4 w-4 flex-shrink-0"/>
-              Espèces
-            </li>
-            <li class="flex items-center justify-center gap-2 opacity-90 drop-shadow">
-              <Icon name="lucide:banknote" class="h-4 w-4 flex-shrink-0"/>
-              Virement
-            </li>
-          </ul>
-          <p class="font-sans text-sm opacity-90 leading-relaxed drop-shadow mt-3 text-center">
-            <Icon name="lucide:wifi" class="h-4 w-4 inline-block -mt-0.5 mr-1"/>
+          <p class="font-sans text-sm opacity-90 drop-shadow">
+            <Icon name="lucide:credit-card" class="h-4 w-4 inline relative top-px"/>
+            Carte Bancaire /
+            <Icon name="lucide:wallet" class="h-4 w-4 inline relative top-px"/>
+            Espèces /
+            <Icon name="lucide:banknote" class="h-4 w-4 inline relative top-px"/>
+            Virement
+          </p>
+          <p class="font-sans text-sm opacity-90 drop-shadow mt-1">
+            <Icon name="lucide:wifi" class="h-4 w-4 inline relative top-px"/>
             Paiement à distance par CB disponible.
           </p>
         </div>
       </div>
-
       <div class="border-t border-background/20 pt-8 text-center text-sm opacity-75 drop-shadow">
         <p>&copy; {{ new Date().getFullYear() }} TNCA ET FILS. Tous droits réservés.</p>
         <div class="mt-2 space-x-4">

@@ -1,15 +1,12 @@
 <template>
   <section class="py-12 md:py-16 bg-background">
     <div class="container mx-auto px-4">
-      <div class="text-center mb-12">
-        <h2 class="text-3xl md:text-4xl font-heading font-black uppercase text-secondary mb-4 text-balance">
-          Notre catalogue
-        </h2>
-        <p class="text-lg text-foreground max-w-2xl mx-auto leading-relaxed">
-          Consultez notre catalogue produits et découvrez nos offres. Téléchargez-le en PDF pour le consulter à tout
-          moment.
-        </p>
-      </div>
+      <UiSectionHeader
+          class="mb-12 md:mb-16"
+          title="Notre catalogue"
+          subtitle="Consultez notre catalogue produits et découvrez nos offres. Téléchargez-le en PDF pour le consulter à tout
+          moment."
+      />
 
       <div class="flex justify-center">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl">
@@ -85,22 +82,5 @@ const catalogs = [
     date: 'Janvier 2025',
     badge: 'Nouveau',
   },
-  // Ajoutez un ou deux catalogues pour tester le centrage
-  // {
-  //   title: 'Promotions Printemps',
-  //   description: 'Profitez de nos offres spéciales sur une sélection de produits pour vos projets de printemps.',
-  //   image: '/images/catalogue-promo-printemps.jpg',
-  //   pdfUrl: '/catalogue_promo_printemps.pdf',
-  //   date: 'Mars 2025',
-  //   badge: 'Promo',
-  // },
-  // {
-  //   title: 'Guide Outillage Pro',
-  //   description: 'Le guide complet de notre gamme d\'outillage professionnel pour tous les corps de métier.',
-  //   image: '/images/catalogue-outillage-pro.jpg',
-  //   pdfUrl: '/catalogue_outillage_pro.pdf',
-  //   date: 'Février 2025',
-  //   badge: null,
-  // },
 ]
 </script>
