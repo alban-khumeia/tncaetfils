@@ -10,7 +10,7 @@
       <div class="flex items-center justify-between">
 
         <div class="flex items-center gap-8">
-          <a href="/">
+          <NuxtLink to="/">
             <NuxtImg
                 v-if="!isScrolled"
                 src="/1.png"
@@ -27,7 +27,7 @@
                 width="1920"
                 height="1080"
             />
-          </a>
+          </NuxtLink>
 
         <nav class="hidden md:flex items-center gap-6">
           <NuxtLink

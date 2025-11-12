@@ -42,7 +42,7 @@ jobs:
         run: pnpm rebuild
 
       - name: Static generation
-        run: pnpm generate
+        run: pnpm nuxi generate --preset=github_pages
         env:
           NODE_OPTIONS: --openssl-legacy-provider
           NUXT_PUBLIC_SITE_URL: https://${{ github.repository_owner }}.github.io/tncaetfils
