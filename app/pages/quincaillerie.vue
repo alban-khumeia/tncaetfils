@@ -34,12 +34,12 @@ const reassuranceQuincaillerie = {
     },
     {
       icon: 'lucide:package',
-      title: "Le Stock Réel",
-      description: "Basés à [Ville], notre stock est disponible immédiatement. Venez charger ou appelez-nous pour vérifier une quantité."
+      title: "Matières premières fondations de construction",
+      description: "Tout est au même endroit. Ouvert à partir de 6h30."
     },
     {
       icon: 'lucide:truck',
-      title: "La Livraison (Leur force !)",
+      title: "La Livraison",
       description: "Besoin de gros volumes ? D'une livraison ? C'est notre métier. Nous assurons la logistique de vos matériaux directement sur site."
     }
   ],
@@ -116,13 +116,18 @@ const categoriesData = ref<Category[]>([
     icon: 'lucide:shield',
   },
   {
-    title: 'Menuiserie & Bois',
-    description: 'Panneaux, tasseaux, bois de charpente et quincaillerie d\'ameublement.',
+    title: 'Menuiserie & Aluminium',
+    description: 'Panneaux, tasseaux, bois de charpente et quincaillerie d\'ameublement. Aluminium standard et sur mesure.',
     icon: 'lucide:frame',
   },
   {
     title: 'Revêtement Sol & Mur',
     description: 'Carrelage, parquet, lambris et tous les accessoires de pose (colle, joints, outillage).',
+    icon: 'lucide:layers',
+  },
+  {
+    title: 'Terrassement',
+    description: 'Minipelle, fouille, petits travaux.',
     icon: 'lucide:layers',
   },
 ])

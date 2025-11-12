@@ -2,9 +2,8 @@
 name: Deploy Nuxt SSG to GitHub Pages
 
 on:
-  # Se déclenche à chaque push sur la branche 'main' (ou 'master')
   push:
-    branches: [ "master" ] # Adaptez si votre branche principale a un autre nom
+    branches: [ "master" ]
 
 permissions:
   contents: read
@@ -18,47 +17,42 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      # ÉTAPE AJOUTÉE : Installation de pnpm
       - name: Setup pnpm
         uses: pnpm/action-setup@v3
         with:
-          version: 10 # Mettez ici votre version de pnpm si vous en avez une spécifique
+          version: 10
 
-      # ÉTAPE MODIFIÉE : Setup Node.js et activation du cache pnpm
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: "22" # Assurez-vous que c'est votre version de Node
-          cache: 'pnpm' # Indique à setup-node de mettre en cache les dépendances pnpm
+          node-version: "22"
+          cache: 'pnpm'
 
 
       - name: Install build dependencies
         run: sudo apt-get update && sudo apt-get install -y build-essential
           
-          # AJOUTÉ : Vide le cache au cas où il y aurait des binaires M1 corrompus
       - name: Clear pnpm store
         run: pnpm store prune
 
-          # MODIFIÉ : Installe sans exécuter les scripts de post-installation
       - name: Install dependencies (ignore scripts)
         run: pnpm install --ignore-scripts
 
-          # AJOUTÉ : Recompile les dépendances natives (sharp, etc.)
       - name: Rebuild native dependencies
         run: pnpm rebuild
 
-      # ÉTAPE MODIFIÉE : Utilisation de pnpm generate
       - name: Static generation
         run: pnpm generate
-        env: # <--- AJOUTEZ CECI
+        env:
           NODE_OPTIONS: --openssl-legacy-provider
           NUXT_PUBLIC_SITE_URL: https://${{ github.repository_owner }}.github.io/tncaetfils
           NUXT_APP_BASE_URL: /tncaetfils/
+          NUXT_IMAGE_IPX_BASE_URL: /tncaetfils/_ipx
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: .output/public # Ne change pas
+          path: .output/public
 
   deploy:
     environment:
