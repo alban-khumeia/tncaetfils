@@ -31,6 +31,4 @@ defineProps<{
   title: string
   subtitle?: string
 }>()
-
-
 </script>

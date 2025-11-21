@@ -1,9 +1,18 @@
 <template>
   <div class="min-h-screen">
     <main>
-      <BlocksHero/>
+      <BlocksHero
+          title="Quincaillerie et Matériaux de construction à Ravine des Cabris"
+          subtitle="Votre partenaire local pour l'outillage et la livraison de chantier partout sur l'Île de la Réunion"
+          imageSrc="/hero6.jpg"
+          imageAlt="Magasin de matériaux"/>
       <BlocksTrustBar :features="trustFeatures"/>
-      <BlocksQuincaillerieSection/>
+      <BlocksCategoryGrid
+          :title="pageTitle"
+          :subtitle="pageSubtitle"
+          :categories="pageCategories"
+          :cta-text="cta.text"
+          :cta-link="cta.link"/>
       <BlocksTransportSection/>
       <BlocksLocal/>
       <BlocksClientsReviews/>
@@ -20,6 +29,8 @@
 
 <script setup lang="ts">
 import {useHead} from '#app';
+import type {Category} from '~/components/blocks/CategoryGrid.vue'
+import BlocksHero from '~/components/blocks/Hero.vue'
 
 const faqsAccueil = [
   {
@@ -78,6 +89,67 @@ const trustFeatures = [
     description: 'Service de transport professionnel',
   },
 ]
+
+const pageTitle = "Votre nouvelle quincaillerie à La Réunion"
+const pageSubtitle = "Découvrez notre large gamme de produits pour tous vos projets de construction, rénovation et aménagement."
+
+const cta = {
+  text: "Découvrir Tous nos Rayons",
+  link: "/quincaillerie"
+}
+
+// 3. Vos catégories, typées avec l'interface importée
+const pageCategories: Category[] = [
+  {
+    id: 'btp-1', // J'ajoute un ID, c'est mieux pour la key
+    image: '/images/btp.png',
+    title: 'MATÉRIELS DE BTP',
+    description: 'Dameuse, compresseur, pilonneuse, etc.',
+    href: '/quincaillerie',
+    gridClasses: 'lg:col-span-2 lg:row-span-2 min-h-[24rem]',
+  },
+  {
+    id: 'jardin-2',
+    image: '/images/jardinage.png',
+    title: 'MATÉRIELS DE JARDINAGE',
+    description: 'Broyeur de végétaux, débroussailleuse.',
+    href: '/quincaillerie',
+    gridClasses: 'lg:col-span-1 lg:row-span-2 min-h-[24rem]',
+  },
+  {
+    id: 'outil-3',
+    image: '/images/outillage.png',
+    title: 'OUTILLAGE',
+    description: 'Clé à griffe, coupe boulons, pince à rivet.',
+    href: '/quincaillerie',
+    gridClasses: 'lg:col-span-1 lg:row-span-1 min-h-[12rem]',
+  },
+  {
+    id: 'agregat-4',
+    image: '/images/agregats.png',
+    title: 'AGRÉGATS',
+    description: 'Gravier, sable, scorie, touvenant.',
+    href: '/quincaillerie',
+    gridClasses: 'lg:col-span-1 lg:row-span-1 min-h-[12rem]',
+  },
+  {
+    id: 'plomb-5',
+    image: '/images/plomberie.png',
+    title: 'PLOMBERIE',
+    description: 'Tuyau PVC, polyéthylène, accessoires.',
+    href: '/quincaillerie',
+    gridClasses: 'lg:col-span-2 lg:row-span-1 min-h-[12rem]',
+  },
+  {
+    id: 'macon-6',
+    image: '/images/maconnerie.png',
+    title: 'MAÇONNERIE & GROS ŒUVRE',
+    description: 'Blocs, chainage, poteau, bétonnières.',
+    href: '/quincaillerie',
+    gridClasses: 'lg:col-span-2 lg:row-span-1 min-h-[12rem]',
+  },
+]
+
 useHead({
   title: 'Matériaux Réunion - Quincaillerie & Transport de Matériaux BTP'
 })

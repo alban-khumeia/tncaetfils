@@ -4,6 +4,7 @@
       :to="to"
       :href="href"
       :class="computedClasses"
+      v-bind="$attrs"
   >
     <Icon
         v-if="leadingIcon"
@@ -26,14 +27,19 @@
 </template>
 
 <script setup lang="ts">
-import {computed} from 'vue'
+import {computed, useAttrs} from 'vue'
+import {twMerge} from "tailwind-merge";
 
-// --- 1. Définition des Props ---
+defineOptions({
+  inheritAttrs: false
+})
+
+const attrs = useAttrs()
 
 const props = withDefaults(defineProps<{
   to?: string
   href?: string
-  variant?: 'solid' | 'outline' | 'ghost'
+  variant?: 'solid' | 'outline' | 'ghost' | 'glass'
   size?: 'sm' | 'md' | 'lg'
   leadingIcon?: string
   trailingIcon?: string
@@ -46,15 +52,11 @@ const props = withDefaults(defineProps<{
   trailingIcon: undefined,
 })
 
-// --- 2. Logique du composant (Tag) ---
-
 const componentTag = computed(() => {
   if (props.href) return 'a'
   if (props.to) return 'NuxtLink'
   return 'button'
 })
-
-// --- 3. Logique des Classes (Styles) ---
 
 const iconSizeClass = computed(() => {
   switch (props.size) {
@@ -68,10 +70,11 @@ const iconSizeClass = computed(() => {
   }
 })
 
-const computedClasses = computed(() => {
+const baseClasses = computed(() => {
   const classes = []
 
-  classes.push('inline-flex items-center justify-center gap-2 font-bold font-sans transition-colors focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 cursor-pointer')
+  // Base commune
+  classes.push('inline-flex items-center justify-center gap-2 font-bold font-sans transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 cursor-pointer')
 
   switch (props.size) {
     case 'sm':
@@ -86,20 +89,26 @@ const computedClasses = computed(() => {
       break
   }
 
-  // Variantes (Variant)
   switch (props.variant) {
     case 'outline':
-      classes.push('border border-primary text-primary hover:bg-primary-hover/10')
+      classes.push('border border-primary text-primary hover:bg-primary-hover/10 focus:ring-primary')
       break
     case 'ghost':
-      classes.push('text-primary hover:bg-primary-hover/10')
+      classes.push('text-primary hover:bg-primary-hover/10 focus:ring-primary')
+      break
+    case 'glass':
+      classes.push('border border-white/30 bg-secondary/25 text-white backdrop-blur-sm hover:bg-secondary/40 hover:border-white/50 focus:ring-white')
       break
     case 'solid':
     default:
-      classes.push('bg-primary text-white hover:bg-primary-hover')
+      classes.push('bg-primary text-white hover:bg-primary-hover focus:ring-primary')
       break
   }
 
   return classes
+})
+
+const computedClasses = computed(() => {
+  return twMerge(baseClasses.value, attrs.class as string)
 })
 </script>
