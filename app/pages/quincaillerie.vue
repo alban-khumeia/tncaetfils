@@ -1,5 +1,9 @@
 <template>
-  <BlocksHero />
+  <BlocksHero
+      title="Quincaillerie et Matériaux de construction à Ravine des Cabris"
+      subtitle="Votre partenaire local pour l'outillage et la livraison de chantier partout sur l'Île de la Réunion"
+      imageSrc="/hero2.png"
+      imageAlt="Magasin de matériaux"/>
   <BlocksCategories
       title="Tous vos besoins, un seul magasin"
       subtitle="Fini de courir. Nous avons sélectioné les essentiels pour les professionnels du BTP, les artisans et les
@@ -23,6 +27,8 @@
 
 <script setup lang="ts">
 // Data spécifique pour la page quincaillerie
+import BlocksHero from "~/components/blocks/Hero.vue";
+
 const reassuranceQuincaillerie = {
   title: "Plus qu'une quincaillerie. Votre partenaire chantier.",
   intro: "Notre métier historique, c'est le BTP. On sait ce qui fonctionne.",

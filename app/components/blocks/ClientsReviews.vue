@@ -1,58 +1,69 @@
 <template>
-  <section class="py-16 md:py-24 bg-secondary">
+  <section class="py-12 md:py-24 bg-secondary overflow-hidden">
     <div class="container mx-auto px-4">
-      <div class="text-center mb-12">
-        <h2 class="text-3xl md:text-4xl font-heading font-black uppercase text-background mb-4 text-balance">
-          Avis vérifiés de nos clients
+
+      <div class="text-center mb-8 md:mb-12">
+        <h2 class="text-2xl md:text-4xl font-heading font-black uppercase text-background mb-3 md:mb-4 text-balance">
+          {{ title }}
         </h2>
-        <p class="font-sans text-lg text-background/80 max-w-2xl mx-auto leading-relaxed">
-          Découvrez ce que nos clients professionnels et particuliers pensent de nos services.
+        <p v-if="subtitle" class="font-sans text-base md:text-lg text-background/80 max-w-2xl mx-auto leading-relaxed">
+          {{ subtitle }}
         </p>
       </div>
 
-      <div class="grid md:grid-cols-3 gap-8">
+      <div v-if="items.length === 0" class="text-center text-background/50 py-12 italic">
+        Aucun avis pour le moment.
+      </div>
+
+      <div v-else
+           class="flex md:grid md:grid-cols-3 gap-4 md:gap-8 overflow-x-auto md:overflow-visible snap-x snap-mandatory -mx-4 px-4 md:mx-0 md:px-0 pb-6 md:pb-0 scrollbar-hide">
         <div
-            v-for="(review, index) in reviews"
-            :key="index"
-            class="bg-foreground border border-secondary p-6 hover:shadow-lg transition-shadow"
+            v-for="(review, index) in items"
+            :key="review.id || index"
+            class="min-w-[85vw] md:min-w-0 snap-center bg-foreground border border-secondary p-5 md:p-6 hover:shadow-lg transition-shadow rounded-sm"
         >
-          <div class="flex items-center gap-4 mb-4">
-            <div class="h-12 w-12 bg-primary flex items-center justify-center flex-shrink-0">
+          <div class="flex items-center gap-3 md:gap-4 mb-3 md:mb-4">
+            <div class="h-10 w-10 md:h-12 md:w-12 bg-primary flex items-center justify-center flex-shrink-0">
               <Icon name="lucide:user" class="h-5 w-5 text-background"/>
             </div>
             <div>
-              <h3 class="font-sans font-semibold text-background">{{ review.name }}</h3>
-              <p class="font-sans text-sm text-background/80">{{ review.role }}</p>
+              <h3 class="font-sans font-semibold text-background text-base md:text-lg">
+                {{ review.author }}
+              </h3>
+              <p v-if="review.role" class="font-sans text-xs md:text-sm text-background/80 uppercase tracking-wide">
+                {{ review.role }}
+              </p>
             </div>
           </div>
 
-          <div class="flex gap-1 mb-4">
+          <div class="flex gap-1 mb-3 md:mb-4">
             <Icon
                 v-for="star in 5"
                 :key="star"
                 name="heroicons-solid:star"
-                class="fill-primary text-primary"
-                size="20"
+                class="transition-colors"
+                :class="star <= review.rating ? 'fill-primary text-primary' : 'fill-transparent text-secondary'"
+                size="18"
             />
           </div>
 
-          <p class="font-sans text-background/90 leading-relaxed italic">
-            "{{ review.comment }}"
+          <p class="font-sans text-sm md:text-base text-background/90 leading-relaxed italic h-auto md:min-h-[80px]">
+            "{{ review.content }}"
           </p>
 
-          <div class="mt-4 pt-4 border-t border-secondary">
-            <div class="flex items-center gap-2 text-sm text-background/80">
-              <Icon name="lucide:calendar" class="h-5 w-5"/>
+          <div class="mt-4 pt-4 border-t border-secondary/50">
+            <div class="flex items-center gap-2 text-xs md:text-sm text-background/60">
+              <Icon name="lucide:calendar" class="h-4 w-4"/>
               <span class="font-sans">{{ review.date }}</span>
             </div>
           </div>
         </div>
       </div>
 
-      <div class="text-center mt-12">
-        <div class="inline-flex items-center gap-2 text-background/80">
+      <div class="text-center mt-8 md:mt-12">
+        <div class="inline-flex items-center gap-2 text-background/80 py-2 px-4 bg-background/5 rounded-full">
           <Icon name="lucide:shield-check" class="h-5 w-5 text-primary"/>
-          <span class="font-sans font-medium">Avis certifiés et vérifiés</span>
+          <span class="font-sans font-medium text-sm">Avis certifiés et vérifiés</span>
         </div>
       </div>
     </div>
@@ -60,25 +71,35 @@
 </template>
 
 <script setup lang="ts">
-// Le script reste inchangé
-const reviews = [
-  {
-    name: 'Jean-Marc L.',
-    role: 'Artisan maçon',
-    comment: 'Excellent service ! Le stock est toujours disponible et les conseils sont précieux. La livraison est rapide et les chauffeurs sont professionnels. Je recommande vivement pour tous les chantiers.',
-    date: 'Janvier 2025',
-  },
-  {
-    name: 'Sophie R.',
-    role: 'Particulier',
-    comment: 'Très satisfaite de mon achat pour ma rénovation. L\'équipe a pris le temps de me conseiller sur les bons produits. Prix compétitifs et qualité au rendez-vous. Je reviendrai sans hésiter.',
-    date: 'Décembre 2024',
-  },
-  {
-    name: 'Patrick M.',
-    role: 'Entrepreneur BTP',
-    comment: 'Partenaire de confiance depuis 3 ans. Leur expertise en transport est un vrai plus pour nos gros chantiers. Toujours à l\'écoute et réactifs. Une référence à La Réunion.',
-    date: 'Novembre 2024',
-  },
-]
+// Définition du type pour la sécurité TypeScript (à déplacer idéalement dans un dossier types/)
+export interface ReviewItem {
+  id?: number | string
+  author: string
+  role?: string // Optionnel, car WP n'a pas toujours ce champ par défaut
+  content: string
+  date: string
+  rating: number // 1 à 5
+}
+
+// Définition des props avec valeurs par défaut
+const props = withDefaults(defineProps<{
+  title?: string
+  subtitle?: string
+  items?: ReviewItem[]
+}>(), {
+  title: 'Avis vérifiés de nos clients',
+  subtitle: 'Le retour terrain de nos pros et particuliers.',
+  items: () => []
+})
 </script>
+
+<style scoped>
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+</style>

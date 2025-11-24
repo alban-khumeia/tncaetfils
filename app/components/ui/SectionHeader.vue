@@ -25,12 +25,12 @@ const props = defineProps({
 
 const titleSizeStyles = {
   lg: 'text-3xl md:text-4xl',
-  md: 'text-2xl md:text-3xl',
+  md: 'text-2xl md:text-4xl',
   sm: 'text-xl md:text-2xl',
 };
 
 const titleClasses = computed(() => {
-  const baseClasses = 'font-heading font-black uppercase text-foreground';
+  const baseClasses = 'font-heading font-black uppercase text-secondary';
   const sizeClass = titleSizeStyles[props.size];
 
   return `${baseClasses} ${sizeClass}`;

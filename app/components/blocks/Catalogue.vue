@@ -2,57 +2,61 @@
   <section class="py-12 md:py-16 bg-background">
     <div class="container mx-auto px-4">
       <UiSectionHeader
-          class="mb-12 md:mb-16"
-          title="Notre catalogue"
-          subtitle="Consultez notre catalogue produits et découvrez nos offres. Téléchargez-le en PDF pour le consulter à tout
-          moment."
+          class="mb-10 md:mb-16 text-center"
+          title="Nos catalogue"
+          subtitle="Consultez nos offres et téléchargez le PDF pour un accès hors-connexion sur vos chantiers."
       />
 
       <div class="flex justify-center">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 max-w-7xl w-full">
           <a
               v-for="catalog in catalogs"
               :key="catalog.title"
               :href="catalog.pdfUrl"
               target="_blank"
               rel="noopener noreferrer"
-              class="group bg-background border border-border overflow-hidden hover:shadow-lg hover:border-secondary transition-all"
+              class="group relative flex flex-col bg-card border border-border rounded-lg overflow-hidden hover:border-secondary hover:shadow-lg active:scale-[0.99] transition-all duration-200"
               aria-label="'Télécharger le ' + catalog.title"
           >
-            <div class="relative h-96 md:h-[400px] flex items-center justify-center overflow-hidden">
+            <div v-if="catalog.badge"
+                 class="absolute top-3 right-3 z-10 bg-primary text-background px-3 py-1 text-xs md:text-sm font-bold uppercase tracking-wide shadow-sm rounded-sm">
+              {{ catalog.badge }}
+            </div>
+
+            <div
+                class="relative w-full bg-muted/30 aspect-[210/297] md:h-[400px] md:aspect-auto flex items-center justify-center overflow-hidden">
               <NuxtImg
                   :src="catalog.image"
                   :alt="catalog.title"
-                  class="w-full h-full object-contain transition-transform duration-300 group-hover:scale-105"
+                  class="w-full h-full object-cover md:object-contain transition-transform duration-500 group-hover:scale-105"
                   width="400"
-                  height="565" format="webp"
+                  height="565"
+                  format="webp"
                   loading="lazy"
               />
-              <div
-                  class="absolute inset-0 bg-black/20 group-hover:bg-black/30 transition-colors flex items-center justify-center">
-              </div>
-              <div v-if="catalog.badge"
-                   class="absolute top-4 right-4 bg-primary text-background px-3 py-1 text-sm font-semibold">
-                {{ catalog.badge }}
-              </div>
+              <div class="absolute inset-0 bg-black/5 group-hover:bg-black/10 transition-colors"></div>
             </div>
 
-            <div class="p-6">
-              <h3 class="text-xl font-heading uppercase font-bold text-foreground mb-2 group-hover:text-primary transition-colors">
-                {{ catalog.title }}
-              </h3>
-              <p class="text-muted-foreground mb-4 leading-relaxed">
-                {{ catalog.description }}
-              </p>
+            <div class="flex flex-col flex-grow p-5 md:p-6">
+              <div class="flex-grow">
+                <h3 class="text-lg md:text-xl font-heading uppercase font-black text-foreground mb-2 leading-tight group-hover:text-primary transition-colors">
+                  {{ catalog.title }}
+                </h3>
+                <p class="text-sm md:text-base text-muted-foreground mb-4 line-clamp-3 leading-relaxed">
+                  {{ catalog.description }}
+                </p>
+              </div>
 
-              <div class="flex items-center justify-between">
-                <div class="flex items-center gap-2 text-sm text-muted-foreground">
-                  <Icon name="lucide:calendar" class="h-5 w-5"/>
+              <div class="pt-4 mt-auto border-t border-border/50 flex items-center justify-between">
+                <div class="flex items-center gap-2 text-xs md:text-sm text-muted-foreground font-medium">
+                  <Icon name="lucide:calendar" class="h-4 w-4"/>
                   <span>{{ catalog.date }}</span>
                 </div>
-                <div class="flex items-center gap-2 text-primary font-medium group-hover:gap-3 transition-all">
-                  <span>Télécharger PDF</span>
-                  <Icon name="lucide:download" class="h-5 w-5"/>
+
+                <div
+                    class="flex items-center gap-2 bg-secondary/10 text-secondary-foreground px-3 py-2 rounded md:bg-transparent md:p-0 md:text-primary font-bold text-sm transition-all group-hover:text-primary group-hover:gap-3">
+                  <span>PDF</span>
+                  <Icon name="lucide:download" class="h-4 w-4 md:h-5 md:w-5"/>
                 </div>
               </div>
             </div>
@@ -60,12 +64,13 @@
         </div>
       </div>
 
-      <div class="text-center mt-12">
-        <p class="text-muted-foreground mb-4">
-          Vous souhaitez recevoir nos catalogues par email ?
+      <div class="mt-12 md:mt-16 bg-muted/30 rounded-xl p-6 md:p-8 text-center border border-border/50">
+        <p class="text-foreground font-medium mb-4 md:mb-6 max-w-2xl mx-auto">
+          Pas le temps de chercher ? Recevez nos nouveaux catalogues directement par email.
         </p>
-        <UiBaseButton variant="outline" leading-icon="lucide:mail">
-          <span>S'inscrire à la newsletter</span>
+        <UiBaseButton variant="outline" leading-icon="lucide:mail"
+                      class="w-full md:w-auto justify-center h-12 md:h-10 text-base">
+          <span>M'inscrire à la newsletter</span>
         </UiBaseButton>
       </div>
     </div>
@@ -73,10 +78,19 @@
 </template>
 
 <script setup lang="ts">
-const catalogs = [
+interface Catalog {
+  title: string
+  description: string
+  image: string
+  pdfUrl: string
+  date: string
+  badge?: string
+}
+
+const catalogs: Catalog[] = [
   {
     title: 'Catalogue Gros Œuvre 2025',
-    description: 'Découvrez notre gamme complète de matériaux pour le gros œuvre : ciment, parpaings, fers à béton et plus encore.',
+    description: 'Ciment, parpaings, fers à béton... Retrouvez tous les indispensables pour vos chantiers structurants.',
     image: '/cover-catalogue-ouverture.jpg',
     pdfUrl: '/catalogue_gros_oeuvre_2025.pdf',
     date: 'Janvier 2025',

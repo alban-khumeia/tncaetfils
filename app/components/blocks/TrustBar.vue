@@ -9,8 +9,8 @@
             <Icon :name="feature.icon" size="24" class="text-white"/>
           </div>
           <div>
-            <h3 class="font-heading font-black uppercase mb-1">{{ feature.title }}</h3>
-            <p class="text-sm font-sans font-normal text-white/80">{{ feature.description }}</p>
+            <h3 class="font-heading text-md leading-snug font-black uppercase mb-1">{{ feature.title }}</h3>
+            <p class="text-sm leading-snug font-sans font-normal text-white/80">{{ feature.description }}</p>
           </div>
 
         </div>

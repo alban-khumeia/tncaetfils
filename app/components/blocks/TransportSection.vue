@@ -1,29 +1,33 @@
 <template>
-  <section id="transport" class="py-16 md:py-24 bg-muted">
+  <section id="transport" class="py-12 md:py-24 bg-muted overflow-hidden">
     <div class="container mx-auto px-4">
-      <div class="grid md:grid-cols-2 gap-12 items-start">
+      <div class="grid md:grid-cols-2 gap-8 md:gap-16 items-center">
 
-        <div class="relative md:order-2">
+        <div class="hidden md:block relative md:order-2">
           <NuxtImg
               src="/camion.png"
-              alt="Camion de livraison"
-              class="w-full"
+              alt="Camion livraison matériaux"
+              class="w-full h-auto max-h-[500px] object-contain mix-blend-multiply"
               width="600"
               height="500"
           />
         </div>
 
-        <div class="md:order-1">
-          <h2 class="text-3xl md:text-4xl font-heading leading-tight font-black uppercase text-secondary mb-6 text-balance">
-            Notre métier historique : Transport de matériaux
+        <div class="md:order-1 flex flex-col">
+          <span class="block text-primary font-bold tracking-widest uppercase text-xs mb-2">
+            Logistique & Service
+          </span>
+
+          <h2 class="text-3xl md:text-4xl font-heading font-black uppercase text-secondary mb-4 text-balance">
+            Transport de matériaux
           </h2>
-          <p class="text-lg text-foreground mb-8 leading-relaxed">
-            Depuis plus de 25 ans, nous assurons le transport de matériaux de construction sur toute La Réunion. Notre
-            expertise et notre flotte moderne garantissent une livraison rapide et sécurisée de vos commandes, du
-            simple sac de ciment au camion complet de matériaux.
+
+          <p class="text-base md:text-lg text-muted-foreground mb-8 leading-relaxed border-l-4 border-border pl-4">
+            Depuis 25 ans, notre flotte livre vos chantiers. Du simple sac au semi-remorque, nous garantissons rapidité
+            et accès difficile.
           </p>
 
-          <div class="grid sm:grid-cols-2 gap-6 mb-8">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-6 mb-6">
             <UiBaseCard
                 v-for="(service, index) in services"
                 :key="index"
@@ -33,8 +37,23 @@
             />
           </div>
 
-          <UiBaseButton size="lg" to="/transport-materiaux">
-            Découvrir Notre Service de Transport
+          <div
+              class="md:hidden relative w-full -mx-4 mb-4 flex justify-center bg-gradient-to-r from-transparent via-white/40 to-transparent">
+            <NuxtImg
+                src="/camion.png"
+                alt="Camion livraison matériaux"
+                class="h-48 w-auto object-contain mix-blend-multiply"
+                width="400"
+                height="300"
+            />
+          </div>
+
+          <UiBaseButton
+              size="lg"
+              to="/transport-materiaux"
+              class="w-full md:w-auto font-bold uppercase tracking-wide shadow-lg z-10"
+          >
+            Voir nos tarifs transport
           </UiBaseButton>
         </div>
 
@@ -44,27 +63,27 @@
 </template>
 
 <script setup lang="ts">
-// CHANGEMENT : Descriptions rééquilibrées pour une harmonie visuelle
+// Données validées client conservées strictement
 const services = [
   {
     icon: 'lucide:truck',
-    title: 'Flotte moderne',
-    description: '6 camions adaptés, du simple sac au camion complet.',
+    title: 'Flotte Polyvalente',
+    description: '6 camions récents. Du simple sac de ciment au chargement complet.',
   },
   {
     icon: 'lucide:package',
-    title: 'Chargement sécurisé',
-    description: 'Manutention professionnelle de vos matériaux par nos experts.',
+    title: 'Chargement Soigné',
+    description: 'Manutention et arrimage par nos experts pour sécuriser vos matériaux.',
   },
   {
-    icon: 'lucide:clock',
-    title: 'Livraison rapide',
-    description: 'Délais respectés et couverture complète de toute l\'île.',
+    icon: 'lucide:map-pin',
+    title: 'Livraison Toute l\'Île',
+    description: 'Délais respectés et couverture logistique sur toute La Réunion.',
   },
   {
-    icon: 'lucide:shield',
-    title: 'Transport Garanti', // Titre raccourci
-    description: 'Capacité > 3T5. Couverture complète via notre assurance RC Pro.',
+    icon: 'lucide:shield-check',
+    title: 'Transport Assuré',
+    description: 'Capacité > 3.5T. Marchandise couverte par notre assurance RC Pro.',
   },
 ]
 </script>

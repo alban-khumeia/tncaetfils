@@ -4,7 +4,7 @@
       <BlocksHero
           title="Quincaillerie et Matériaux de construction à Ravine des Cabris"
           subtitle="Votre partenaire local pour l'outillage et la livraison de chantier partout sur l'Île de la Réunion"
-          imageSrc="/hero6.jpg"
+          imageSrc="/hero2.png"
           imageAlt="Magasin de matériaux"/>
       <BlocksTrustBar :features="trustFeatures"/>
       <BlocksCategoryGrid
@@ -15,7 +15,10 @@
           :cta-link="cta.link"/>
       <BlocksTransportSection/>
       <BlocksLocal/>
-      <BlocksClientsReviews/>
+      <BlocksClientsReviews
+          title="Ce qu'ils disent de nous"
+          :items="staticReviews"
+      />
       <BlocksCatalogue />
       <BlocksCTA/>
       <BlocksFAQ
@@ -31,6 +34,7 @@
 import {useHead} from '#app';
 import type {Category} from '~/components/blocks/CategoryGrid.vue'
 import BlocksHero from '~/components/blocks/Hero.vue'
+import type {ReviewItem} from "~/components/blocks/ClientsReviews.vue";
 
 const faqsAccueil = [
   {
@@ -101,12 +105,12 @@ const cta = {
 // 3. Vos catégories, typées avec l'interface importée
 const pageCategories: Category[] = [
   {
-    id: 'btp-1', // J'ajoute un ID, c'est mieux pour la key
+    id: 'btp-1',
     image: '/images/btp.png',
     title: 'MATÉRIELS DE BTP',
-    description: 'Dameuse, compresseur, pilonneuse, etc.',
+    description: 'Dameuse, compresseur, pilonneuse.',
     href: '/quincaillerie',
-    gridClasses: 'lg:col-span-2 lg:row-span-2 min-h-[24rem]',
+    gridClasses: 'lg:col-span-2 lg:row-span-2 lg:min-h-[24rem]',
   },
   {
     id: 'jardin-2',
@@ -114,7 +118,7 @@ const pageCategories: Category[] = [
     title: 'MATÉRIELS DE JARDINAGE',
     description: 'Broyeur de végétaux, débroussailleuse.',
     href: '/quincaillerie',
-    gridClasses: 'lg:col-span-1 lg:row-span-2 min-h-[24rem]',
+    gridClasses: 'lg:col-span-1 lg:row-span-2 lg:min-h-[24rem]',
   },
   {
     id: 'outil-3',
@@ -122,7 +126,7 @@ const pageCategories: Category[] = [
     title: 'OUTILLAGE',
     description: 'Clé à griffe, coupe boulons, pince à rivet.',
     href: '/quincaillerie',
-    gridClasses: 'lg:col-span-1 lg:row-span-1 min-h-[12rem]',
+    gridClasses: 'lg:col-span-1 lg:row-span-1 lg:min-h-[12rem]',
   },
   {
     id: 'agregat-4',
@@ -130,7 +134,7 @@ const pageCategories: Category[] = [
     title: 'AGRÉGATS',
     description: 'Gravier, sable, scorie, touvenant.',
     href: '/quincaillerie',
-    gridClasses: 'lg:col-span-1 lg:row-span-1 min-h-[12rem]',
+    gridClasses: 'lg:col-span-1 lg:row-span-1 lg:min-h-[12rem]',
   },
   {
     id: 'plomb-5',
@@ -138,7 +142,7 @@ const pageCategories: Category[] = [
     title: 'PLOMBERIE',
     description: 'Tuyau PVC, polyéthylène, accessoires.',
     href: '/quincaillerie',
-    gridClasses: 'lg:col-span-2 lg:row-span-1 min-h-[12rem]',
+    gridClasses: 'lg:col-span-2 lg:row-span-1 lg:min-h-[12rem]',
   },
   {
     id: 'macon-6',
@@ -146,10 +150,36 @@ const pageCategories: Category[] = [
     title: 'MAÇONNERIE & GROS ŒUVRE',
     description: 'Blocs, chainage, poteau, bétonnières.',
     href: '/quincaillerie',
-    gridClasses: 'lg:col-span-2 lg:row-span-1 min-h-[12rem]',
+    gridClasses: 'lg:col-span-2 lg:row-span-1 lg:min-h-[12rem]',
   },
 ]
 
+const staticReviews: ReviewItem[] = [
+  {
+    id: 1,
+    author: 'Jean-Marc L.',
+    role: 'Artisan maçon',
+    content: 'Excellent service ! Le stock est toujours disponible et les conseils sont précieux. La livraison est rapide et les chauffeurs sont professionnels. Je recommande vivement pour tous les chantiers.',
+    date: 'Janvier 2025',
+    rating: 5
+  },
+  {
+    id: 2,
+    author: 'Sophie R.',
+    role: 'Particulier',
+    content: 'Très satisfaite de mon achat pour ma rénovation. L\'équipe a pris le temps de me conseiller sur les bons produits. Prix compétitifs et qualité au rendez-vous.',
+    date: 'Décembre 2024',
+    rating: 5
+  },
+  {
+    id: 3,
+    author: 'Patrick M.',
+    role: 'Entrepreneur BTP',
+    content: 'Partenaire de confiance depuis 3 ans. Leur expertise en transport est un vrai plus pour nos gros chantiers. Toujours à l\'écoute et réactifs. Une référence à La Réunion.',
+    date: 'Novembre 2024',
+    rating: 4 // Exemple: 4 étoiles pour tester l'affichage dynamique
+  },
+]
 useHead({
   title: 'Matériaux Réunion - Quincaillerie & Transport de Matériaux BTP'
 })
