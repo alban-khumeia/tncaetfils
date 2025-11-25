@@ -1,9 +1,10 @@
 <template>
-  <section class="py-16 md:py-24 relative overflow-hidden">
+  <section class="relative py-12 md:py-20 overflow-hidden bg-slate-900 isolation-auto">
+
     <NuxtImg
-        src="/cta.png"
-        alt="Camion de transport de matériaux en action"
-        class="absolute inset-0 w-full h-full object-cover object-top z-0 bg-fixed"
+        :src="props.imageSrc"
+        :alt="props.imageAlt"
+        class="absolute inset-0 w-full h-full object-cover object-center z-0 select-none"
         width="1408"
         height="736"
         densities="x1 x2"
@@ -12,26 +13,54 @@
         sizes="xs:100vw sm:100vw md:100vw lg:100vw xl:100vw"
     />
 
-    <div class="absolute inset-0 bg-black/60 z-10"></div>
+    <div class="absolute inset-0 bg-black/70 md:bg-black/60 z-10 pointer-events-none"></div>
 
-    <div class="container mx-auto px-4 text-center relative z-20">
-      <h2 class="text-3xl md:text-4xl font-heading font-black uppercase text-background mb-6 text-balance"
-          style="text-shadow: 0 2px 4px rgba(0,0,0,0.5);">
-        Un projet ? Un besoin spécifique ?
+    <div class="container mx-auto px-4 relative z-20 text-center h-full flex flex-col justify-center items-center">
+
+      <h2 class="text-3xl md:text-4xl lg:text-5xl font-heading font-black uppercase text-white mb-4 md:mb-6 text-balance tracking-tight drop-shadow-lg">
+        {{ props.title }}
       </h2>
 
-      <p class="text-lg md:text-xl text-background mb-8 max-w-2xl mx-auto leading-relaxed opacity-90"
-         style="text-shadow: 0 1px 3px rgba(0,0,0,0.5);">
-        De la simple vis au camion complet de matériaux, parlez-nous de votre projet. Devis gratuit sous 24h.
+      <p v-if="props.description"
+         class="text-lg md:text-xl text-gray-100 mb-8 md:mb-10 max-w-2xl mx-auto leading-relaxed font-medium drop-shadow-md text-pretty">
+        {{ props.description }}
       </p>
 
-      <UiBaseButton to="/contact" variant="solid" class="text-lg" leading-icon="lucide:file-text">
-        <span>Obtenir mon devis gratuit</span>
-      </UiBaseButton>
+      <div class="w-full sm:w-auto">
+        <UiBaseButton
+            :to="props.ctaLink"
+            variant="solid"
+            size="lg"
+            :leading-icon="props.ctaIcon"
+            class="w-full sm:w-auto justify-center font-bold shadow-xl shadow-black/20 active:scale-95 transition-transform"
+        >
+          {{ props.ctaLabel }}
+        </UiBaseButton>
+      </div>
+
     </div>
   </section>
 </template>
 
 <script setup lang="ts">
-// Pas de script nécessaire pour ce composant
+interface Props {
+  title?: string
+  description?: string
+  imageSrc?: string
+  imageAlt?: string
+  ctaLabel?: string
+  ctaLink?: string
+  ctaIcon?: string
+}
+
+// Valeurs par défaut pour correspondre à votre contenu initial
+const props = withDefaults(defineProps<Props>(), {
+  title: "Un projet ? Un besoin spécifique ?",
+  description: "De la simple vis au camion complet de matériaux, parlez-nous de votre projet. Devis gratuit sous 24h.",
+  imageSrc: "/cta.png",
+  imageAlt: "Camion de transport de matériaux sur chantier",
+  ctaLabel: "Obtenir mon devis gratuit",
+  ctaLink: "/contact",
+  ctaIcon: "lucide:file-text"
+})
 </script>

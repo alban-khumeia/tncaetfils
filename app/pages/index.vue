@@ -2,10 +2,14 @@
   <div class="min-h-screen">
     <main>
       <BlocksHero
+          variant="home"
           title="Quincaillerie et Matériaux de construction à Ravine des Cabris"
           subtitle="Votre partenaire local pour l'outillage et la livraison de chantier partout sur l'Île de la Réunion"
-          imageSrc="/hero2.png"
-          imageAlt="Magasin de matériaux"/>
+          imageSrc="/hero.png"
+          imageAlt="Magasin de matériaux"
+          :primary-action="{ label: '06 93 03 46 69', href: 'tel:+262693034669', icon: 'lucide:phone', variant: 'solid' }"
+          :secondary-action="{ label: 'Venir au magasin', href: '#contact', variant: 'glass' }"
+          />
       <BlocksTrustBar :features="trustFeatures"/>
       <BlocksCategoryGrid
           :title="pageTitle"

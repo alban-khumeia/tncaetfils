@@ -2,14 +2,13 @@
   <section class="py-12 md:py-24 bg-secondary overflow-hidden">
     <div class="container mx-auto px-4">
 
-      <div class="text-center mb-8 md:mb-12">
-        <h2 class="text-2xl md:text-4xl font-heading font-black uppercase text-background mb-3 md:mb-4 text-balance">
-          {{ title }}
-        </h2>
-        <p v-if="subtitle" class="font-sans text-base md:text-lg text-background/80 max-w-2xl mx-auto leading-relaxed">
-          {{ subtitle }}
-        </p>
-      </div>
+      <UiSectionHeader
+          :title="title"
+          :subtitle="subtitle"
+          size="md"
+          theme="dark"
+          class="mb-8 md:mb-12"
+      />
 
       <div v-if="items.length === 0" class="text-center text-background/50 py-12 italic">
         Aucun avis pour le moment.

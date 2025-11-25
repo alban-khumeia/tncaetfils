@@ -3,7 +3,14 @@
   <BlocksTimeline />
   <BlocksTrustBar :features="features"/>
   <BlocksÉquipe />
-  <BlocksCTA/>
+  <BlocksCTA
+      title="Rejoignez l'équipe !"
+      description="Chauffeurs, magasiniers... nous recrutons des profils motivés."
+      cta-label="Voir les offres"
+      cta-link="/carrieres"
+      cta-icon="lucide:hard-hat"
+      image-src="/team-photo.jpg"
+  />
   <BlocksLocal />
 </template>
 

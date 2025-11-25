@@ -1,5 +1,15 @@
 <template>
-  <BlocksHero />
+  <BlocksHero
+      variant="service"
+      breadcrumb="Logistique"
+      title="Livraison sur chantier"
+      subtitle="Camion grue et livraison express partout sur l'île, même en accès difficile."
+      imageSrc="/hero-transport.jpg"
+      imageAlt="Camion grue déchargeant une palette"
+      :tags="['Grue 15m', 'Livraison 24h', 'Toute l\'île']"
+      :primary-action="{ label: 'Demander un devis', href: '/catalogue', variant: 'solid', icon: 'lucide:file-text' }"
+      :secondary-action="{ label: 'Demander un stock', href: '/contact', variant: 'glass' }"
+  />
   <BlocksCategories
       title="Nos Services de Transport & Logistique Chantier"
       subtitle="Nous disposons d'une flotte adaptée à tous vos besoins, de l'évacuation de gravats à la livraison de matériaux sensibles."

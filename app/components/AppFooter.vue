@@ -1,8 +1,7 @@
 <template>
-  <footer class="relative py-8 md:py-12 overflow-hidden bg-gray-900 text-background">
-
+  <footer class="relative pt-8 pb-8 md:pt-12 md:pb-4 overflow-hidden bg-gray-900 text-background">
     <NuxtImg
-        src="/footer2.jpg"
+        src="/footer.jpg"
         alt=""
         role="presentation"
         placeholder
@@ -142,11 +141,23 @@
           <a href="#" class="hover:underline drop-shadow p-1">Politique de confidentialité</a>
           <a href="#" class="hover:underline drop-shadow p-1">CGV</a>
         </div>
+
+        <div class="mt-4 pt-4 border-t border-white/10 md:border-none md:pt-0 md:mt-2">
+          <a
+              href="https://khumeia-lab.com/"
+              target="_blank"
+              rel="noopener"
+              class="group inline-flex items-center justify-center gap-2 text-[10px] uppercase tracking-widest opacity-50 hover:opacity-100 transition-all duration-300"
+          >
+            <span class="font-sans font-normal">Réalisation</span>
+            <span class="h-px w-3 bg-current opacity-50 group-hover:w-6 transition-all"></span>
+            <span class="font-heading font-black">khumeía lab</span>
+          </a>
+        </div>
       </div>
     </div>
   </footer>
 </template>
 
 <script setup lang="ts">
-// Aucun script additionnel requis pour la logique d'affichage
 </script>

@@ -2,9 +2,10 @@
   <section class="py-12 md:py-16 bg-background">
     <div class="container mx-auto px-4">
       <UiSectionHeader
-          class="mb-10 md:mb-16 text-center"
-          title="Nos catalogue"
+          class="mb-10 md:mb-16"
+          title="Nos catalogues"
           subtitle="Consultez nos offres et téléchargez le PDF pour un accès hors-connexion sur vos chantiers."
+          size="md"
       />
 
       <div class="flex justify-center">

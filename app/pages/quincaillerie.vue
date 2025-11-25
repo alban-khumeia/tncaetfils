@@ -1,9 +1,15 @@
 <template>
   <BlocksHero
-      title="Quincaillerie et Matériaux de construction à Ravine des Cabris"
-      subtitle="Votre partenaire local pour l'outillage et la livraison de chantier partout sur l'Île de la Réunion"
-      imageSrc="/hero2.png"
-      imageAlt="Magasin de matériaux"/>
+      variant="service"
+      breadcrumb="Nos Rayons"
+      title="Outillage Pro & Matériaux"
+      subtitle="Plus de 5000 références en stock : du gros œuvre aux finitions."
+      imageSrc="/hero-quincaillerie.jpg"
+      imageAlt="Rayon outillage électroportatif"
+      :tags="['Ciment', 'Plomberie', 'Peinture', 'Électroportatif']"
+      :primary-action="{ label: 'Voir le catalogue', href: '/catalogue', variant: 'solid', icon: 'lucide:file-text' }"
+      :secondary-action="{ label: 'Demander un stock', href: '/contact', variant: 'glass' }"
+  />
   <BlocksCategories
       title="Tous vos besoins, un seul magasin"
       subtitle="Fini de courir. Nous avons sélectioné les essentiels pour les professionnels du BTP, les artisans et les

@@ -1,12 +1,15 @@
 <template>
-  <section class="relative bg-muted overflow-hidden flex items-center min-h-[84vh]">
-    <div class="absolute inset-0">
+  <section
+      class="relative bg-muted overflow-hidden flex items-center"
+      :class="variant === 'home' ? 'min-h-[84vh]' : 'min-h-[50vh] md:min-h-[60vh]'"
+  >
+    <div class="absolute inset-0 z-0">
       <NuxtImg
           :src="imageSrc"
           :alt="imageAlt"
-          class="w-full h-full object-cover opacity-85"
-          width="1248"
-          height="832"
+          class="w-full h-full object-cover transition-transform duration-700"
+          :class="variant === 'home' ? 'opacity-85' : 'opacity-90 grayscale-[10%]'"
+          :width="variant === 'home' ? 1248 : 1024"
           preload
           format="webp"
           quality="80"
@@ -14,59 +17,117 @@
     </div>
 
     <div
-        class="absolute inset-0 bg-black/30
-             lg:backdrop-blur-sm lg:bg-black/20
-             lg:[mask-image:linear-gradient(to_right,black_35%,transparent_55%)]"
-    >
-    </div>
-
-    <div class="absolute inset-0">
-    </div>
+        v-if="variant === 'home'"
+        class="absolute inset-0 bg-black/30 lg:backdrop-blur-sm lg:bg-black/20 lg:[mask-image:linear-gradient(to_right,black_35%,transparent_55%)] z-10"
+    ></div>
 
     <div
-        class="absolute top-0 left-0 right-0 h-40 bg-gradient-to-b from-secondary/70 via-secondary/30 to-transparent z-10 pointer-events-none"></div>
+        v-else
+        class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-transparent z-10"
+    ></div>
 
-    <div class="relative container mx-auto px-4 pt-24 md:pt-32 pb-12 md:pb-16">
+    <div
+        class="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-secondary/80 to-transparent z-10 pointer-events-none"></div>
+
+    <div class="relative container mx-auto px-4 pt-24 pb-12 md:pt-32 md:pb-16 z-20">
       <div class="max-w-3xl">
-        <h1 class="text-3xl md:text-5xl lg:text-6xl font-heading font-black tracking-tight text-white mb-6 text-balance uppercase drop-shadow-2xl">
+
+        <div v-if="variant === 'service'" class="flex items-center gap-3 mb-4">
+          <span class="h-0.5 w-8 bg-primary"></span>
+          <span class="text-primary-400 font-bold uppercase tracking-widest text-sm shadow-black drop-shadow-md">
+            {{ breadcrumb || 'Nos Services' }}
+          </span>
+        </div>
+
+        <h1
+            class="font-heading font-black tracking-tight text-white mb-6 text-balance uppercase drop-shadow-2xl"
+            :class="variant === 'home' ? 'text-3xl md:text-5xl lg:text-6xl' : 'text-3xl md:text-5xl'"
+        >
           {{ title }}
         </h1>
-        <p class="text-lg md:text-xl text-white font-sans mb-8 leading-snug text-balance [text-shadow:_0_1px_10px_rgb(0_0_0_/_60%)]">
+
+        <p
+            class="text-white font-sans leading-snug text-balance [text-shadow:_0_1px_10px_rgb(0_0_0_/_60%)]"
+            :class="variant === 'home' ? 'text-lg md:text-xl mb-8' : 'text-lg md:text-xl mb-6 text-gray-100 max-w-2xl'"
+        >
           {{ subtitle }}
         </p>
+
+        <div v-if="tags && tags.length" class="flex flex-wrap gap-2 mb-8">
+          <span
+              v-for="tag in tags"
+              :key="tag"
+              class="px-3 py-1 bg-black/20 border border-white/20 backdrop-blur-md text-white text-xs md:text-sm font-bold uppercase tracking-wide rounded-sm"
+          >
+            {{ tag }}
+          </span>
+        </div>
+
         <div class="flex flex-col sm:flex-row gap-4">
-          <UiBaseButton leading-icon="lucide:phone" size="lg" href="tel:+262693034669">
-            Nous appeler : 06 93 034 669
-          </UiBaseButton>
           <UiBaseButton
-              href="#contact"
-              variant="glass"
-              size="lg">
-            Venir en magasin
+              v-if="primaryAction"
+              :href="primaryAction.href"
+              :variant="primaryAction.variant || 'solid'"
+              size="lg"
+              :leading-icon="primaryAction.icon"
+              class="shadow-xl shadow-black/20"
+          >
+            {{ primaryAction.label }}
+          </UiBaseButton>
+
+          <UiBaseButton
+              v-if="secondaryAction"
+              :href="secondaryAction.href"
+              :variant="secondaryAction.variant || 'glass'"
+              size="lg"
+              :leading-icon="secondaryAction.icon"
+          >
+            {{ secondaryAction.label }}
           </UiBaseButton>
         </div>
+
       </div>
     </div>
   </section>
 </template>
 
 <script setup lang="ts">
-defineProps({
-  title: {
-    type: String,
-    required: true
-  },
-  subtitle: {
-    type: String,
-    required: true
-  },
-  imageSrc: {
-    type: String,
-    required: true
-  },
-  imageAlt: {
-    type: String,
-    required: true
-  }
+// Définition des types pour les boutons d'action
+interface HeroAction {
+  label: string
+  href: string
+  variant?: 'solid' | 'outline' | 'ghost' | 'glass'
+  icon?: string
+}
+
+interface Props {
+  title: string
+  subtitle: string
+  imageSrc: string
+  imageAlt: string
+  variant?: 'home' | 'service'
+  breadcrumb?: string
+  tags?: string[]
+  // On passe les objets d'action pour configurer les boutons proprement
+  primaryAction?: HeroAction
+  secondaryAction?: HeroAction
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  variant: 'home',
+  tags: () => [],
+  // Valeurs par défaut intelligentes si non fournies
+  primaryAction: () => ({
+    label: 'Nous appeler',
+    href: 'tel:+262693034669',
+    variant: 'solid',
+    icon: 'lucide:phone'
+  }),
+  secondaryAction: () => ({
+    label: 'Venir au dépôt',
+    href: '#contact',
+    variant: 'glass',
+    icon: 'lucide:map-pin'
+  })
 })
 </script>
