@@ -94,6 +94,7 @@
           trailing-icon="lucide:arrow-right"
           to="/contact"
           @click="toggleMobileMenu"
+          size="lg"
       >
         Demander un devis
       </UiBaseButton>

@@ -8,7 +8,7 @@
           :src="imageSrc"
           :alt="imageAlt"
           class="w-full h-full object-cover transition-transform duration-700"
-          :class="variant === 'home' ? 'opacity-85' : 'opacity-90 grayscale-[10%]'"
+          :class="variant === 'home' ? 'opacity-85' : 'opacity-90 brightness-110'"
           :width="variant === 'home' ? 1248 : 1024"
           preload
           format="webp"
@@ -18,12 +18,12 @@
 
     <div
         v-if="variant === 'home'"
-        class="absolute inset-0 bg-black/30 lg:backdrop-blur-sm lg:bg-black/20 lg:[mask-image:linear-gradient(to_right,black_35%,transparent_55%)] z-10"
+        class="absolute inset-0 bg-secondary/50 lg:backdrop-blur-sm lg:bg-black/20 lg:[mask-image:linear-gradient(to_right,black_35%,transparent_55%)] z-10"
     ></div>
 
     <div
         v-else
-        class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-transparent z-10"
+        class="absolute inset-0 bg-secondary/50 lg:backdrop-blur-sm md:bg-gradient-to-r lg:from-secondary/60 md:via-secondary/30 lg:via-15% lg:to-transparent lg:[mask-image:linear-gradient(to_right,black_35%,transparent_55%)] z-10"
     ></div>
 
     <div
@@ -34,7 +34,7 @@
 
         <div v-if="variant === 'service'" class="flex items-center gap-3 mb-4">
           <span class="h-0.5 w-8 bg-primary"></span>
-          <span class="text-primary-400 font-bold uppercase tracking-widest text-sm shadow-black drop-shadow-md">
+          <span class="text-primary-400 font-bold uppercase tracking-widest text-sm text-muted shadow-black drop-shadow-2xl">
             {{ breadcrumb || 'Nos Services' }}
           </span>
         </div>
@@ -47,7 +47,7 @@
         </h1>
 
         <p
-            class="text-white font-sans leading-snug text-balance [text-shadow:_0_1px_10px_rgb(0_0_0_/_60%)]"
+            class="text-white font-sans leading-snug text-balance [text-shadow:_0_1px_10px_rgb(0_0_0_/_60%)] drop-shadow-2xl"
             :class="variant === 'home' ? 'text-lg md:text-xl mb-8' : 'text-lg md:text-xl mb-6 text-gray-100 max-w-2xl'"
         >
           {{ subtitle }}

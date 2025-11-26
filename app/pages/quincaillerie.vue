@@ -4,9 +4,9 @@
       breadcrumb="Nos Rayons"
       title="Outillage Pro & Matériaux"
       subtitle="Plus de 5000 références en stock : du gros œuvre aux finitions."
-      imageSrc="/hero-quincaillerie.jpg"
+      imageSrc="/images/hero-quincaillerie.jpeg"
       imageAlt="Rayon outillage électroportatif"
-      :tags="['Ciment', 'Plomberie', 'Peinture', 'Électroportatif']"
+      :tags="['Agrégats', 'Plomberie', 'Électricité', 'Outillage']"
       :primary-action="{ label: 'Voir le catalogue', href: '/catalogue', variant: 'solid', icon: 'lucide:file-text' }"
       :secondary-action="{ label: 'Demander un stock', href: '/contact', variant: 'glass' }"
   />
