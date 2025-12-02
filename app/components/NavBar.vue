@@ -123,7 +123,8 @@ const navLinks = ref<Array<{ name: string, to: string }>>([
 const route = useRoute()
 const forcedScrollPages = [
   '/catalogues',
-  '/contact'
+  '/contact',
+  '/qui-sommes-nous'
 ]
 
 const isForceScrolled = computed(() => {

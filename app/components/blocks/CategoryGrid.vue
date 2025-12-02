@@ -15,11 +15,7 @@
             :to="category.href"
             class="
               group relative overflow-hidden border border-border bg-card transition-all
-
-              /* MOBILE : FORCE FLEX ROW + HAUTEUR FIXE (96px) */
               flex flex-row h-24 rounded-lg shadow-sm
-
-              /* DESKTOP : RESET EN BLOCK + HAUTEUR AUTO + TRANSPARENCE */
               md:block md:h-auto md:rounded-none md:shadow-none md:bg-transparent md:border-transparent
             "
             :class="category.gridClasses"
@@ -48,7 +44,6 @@
           <div class="
             relative z-10 flex flex-col justify-center h-full w-full
             pl-4 pr-8 py-2
-
             md:justify-end md:p-6 md:pr-6
           ">
             <h3 class="
@@ -82,13 +77,13 @@
 </template>
 
 <script setup lang="ts">
-export interface Category {
+export interface GridCategory {
   id?: string
   image: string
   title: string
   description: string
   href: string
-  gridClasses: string // Attention: assure-toi que ces classes ne cassent pas le layout mobile (ex: utiliser `md:col-span-2` au lieu de `col-span-2` dans tes données)
+  gridClasses: string
 }
 
 const props = withDefaults(
@@ -97,7 +92,7 @@ const props = withDefaults(
       subtitle?: string
       ctaText?: string
       ctaLink?: string
-      categories?: Category[]
+      categories?: GridCategory[]
     }>(),
     {
       title: 'Nos Rayons',

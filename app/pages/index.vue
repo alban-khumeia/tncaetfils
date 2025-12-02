@@ -36,7 +36,7 @@
 
 <script setup lang="ts">
 import {useHead} from '#app';
-import type {Category} from '~/components/blocks/CategoryGrid.vue'
+import type {GridCategory} from '~/components/blocks/CategoryGrid.vue'
 import BlocksHero from '~/components/blocks/Hero.vue'
 import type {ReviewItem} from "~/components/blocks/ClientsReviews.vue";
 
@@ -106,8 +106,7 @@ const cta = {
   link: "/quincaillerie"
 }
 
-// 3. Vos catégories, typées avec l'interface importée
-const pageCategories: Category[] = [
+const pageCategories: GridCategory[] = [
   {
     id: 'btp-1',
     image: '/images/btp.png',

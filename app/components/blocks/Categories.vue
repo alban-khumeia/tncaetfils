@@ -7,7 +7,7 @@
           :subtitle="subtitle"
       />
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
+      <div :class="['grid grid-cols-1 gap-4 md:gap-8', gridColsClass]">
         <UiBaseCard
             v-for="(category, index) in categories"
             :key="index"
@@ -21,15 +21,25 @@
 </template>
 
 <script setup lang="ts">
-interface Category {
+export interface Category {
   title: string
   description: string
   icon: string
 }
 
-defineProps<{
+const props = defineProps<{
   categories: Category[]
   title: string
   subtitle?: string
 }>()
+
+const gridColsClass = computed(() => {
+  const count = props.categories.length
+
+  if (count === 2) {
+    return 'md:grid-cols-2'
+  }
+
+  return 'md:grid-cols-2 lg:grid-cols-3'
+})
 </script>

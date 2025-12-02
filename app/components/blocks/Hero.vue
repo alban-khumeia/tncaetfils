@@ -23,7 +23,9 @@
 
     <div
         v-else
-        class="absolute inset-0 bg-secondary/50 lg:backdrop-blur-sm md:bg-gradient-to-r lg:from-secondary/60 md:via-secondary/30 lg:via-15% lg:to-transparent lg:[mask-image:linear-gradient(to_right,black_35%,transparent_55%)] z-10"
+        class="absolute inset-0 z-10
+    bg-gradient-to-b from-secondary/85 via-secondary/65 via-50% to-transparent
+    md:bg-gradient-to-r md:from-secondary/80 md:via-secondary/40 md:to-transparent"
     ></div>
 
     <div

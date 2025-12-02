@@ -4,15 +4,15 @@
       breadcrumb="Logistique"
       title="Livraison sur chantier"
       subtitle="Camion grue et livraison express partout sur l'île, même en accès difficile."
-      imageSrc="/hero-transport.jpg"
+      imageSrc="/images/hero-transport.jpeg"
       imageAlt="Camion grue déchargeant une palette"
       :tags="['Grue 15m', 'Livraison 24h', 'Toute l\'île']"
-      :primary-action="{ label: 'Demander un devis', href: '/catalogue', variant: 'solid', icon: 'lucide:file-text' }"
+      :primary-action="{ label: 'Nous appeler', href: 'tel:+262693034669', icon: 'lucide:phone', variant: 'solid' }"
       :secondary-action="{ label: 'Demander un stock', href: '/contact', variant: 'glass' }"
   />
   <BlocksCategories
       title="Nos Services de Transport & Logistique Chantier"
-      subtitle="Nous disposons d'une flotte adaptée à tous vos besoins, de l'évacuation de gravats à la livraison de matériaux sensibles."
+      subtitle="Nous disposons d'une flotte adaptée à tous vos besoins, de l'évacuation de gravats à la livraison de matériaux sensibles. Ne jonglez plus entre fournisseurs et transporteurs. Commandez vos matériaux BTP, outillage et jardinage dans notre nouvelle quincaillerie et planifiez la livraison en une seule fois."
       :categories="categoriesData"/>
   <BlocksReassurance
       :title="reassuranceTransports.title"
@@ -32,7 +32,7 @@
 <script setup lang="ts">
 const reassuranceTransports = {
   title: "Une flotte fiable, des chauffeurs d'expérience.",
-  intro: "Ne jonglez plus entre fournisseurs et transporteurs. Commandez vos matériaux BTP, outillage et jardinage dans notre nouvelle quincaillerie et planifiez la livraison en une seule fois.",
+  intro: "",
   pillars: [
     {
       icon: 'lucide:user-check',

@@ -7,7 +7,7 @@
       imageSrc="/images/hero-quincaillerie.jpeg"
       imageAlt="Rayon outillage électroportatif"
       :tags="['Agrégats', 'Plomberie', 'Électricité', 'Outillage']"
-      :primary-action="{ label: 'Voir le catalogue', href: '/catalogue', variant: 'solid', icon: 'lucide:file-text' }"
+      :primary-action="{ label: 'Voir le catalogue', href: '/catalogues', variant: 'solid', icon: 'lucide:file-text' }"
       :secondary-action="{ label: 'Demander un stock', href: '/contact', variant: 'glass' }"
   />
   <BlocksCategories
@@ -32,12 +32,12 @@
 </template>
 
 <script setup lang="ts">
-// Data spécifique pour la page quincaillerie
+import type {Category} from "~/components/blocks/Categories.vue";
 import BlocksHero from "~/components/blocks/Hero.vue";
 
 const reassuranceQuincaillerie = {
   title: "Plus qu'une quincaillerie. Votre partenaire chantier.",
-  intro: "Notre métier historique, c'est le BTP. On sait ce qui fonctionne.",
+  intro: "",
   pillars: [
     {
       icon: 'lucide:user-check',
@@ -79,12 +79,6 @@ const faqsQuincaillerie = [
     answer: 'Oui, nous maintenons un stock important de matériaux et produits de quincaillerie pour répondre aux besoins immédiats. Pour les articles spécifiques ou en grande quantité, nous pouvons vous les obtenir rapidement grâce à notre réseau de fournisseurs locaux et nationaux.'
   }
 ]
-
-interface Category {
-  title: string
-  description: string
-  icon: string
-}
 
 const categoriesData = ref<Category[]>([
   {

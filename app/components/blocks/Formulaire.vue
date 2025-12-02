@@ -13,7 +13,6 @@ const formData = ref({
 
 const handleSubmit = () => {
   console.log('Formulaire soumis:', formData.value)
-  // Mettez ici votre logique d'envoi (ex: API)
 }
 </script>
 
@@ -75,6 +74,7 @@ const handleSubmit = () => {
               >
                 <option>Un professionnel</option>
                 <option>Un particulier</option>
+                <option>Une collectivité</option>
               </select>
               <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-foreground">
                 <Icon name="lucide:chevron-down" class="h-5 w-5"/>
