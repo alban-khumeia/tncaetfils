@@ -23,7 +23,7 @@
 
           <nav class="hidden md:flex items-center gap-6">
             <NuxtLink
-                v-for="link in navLinks"
+                v-for="link in items"
                 :key="link.to"
                 :to="link.to"
                 class="transition-colors font-heading text-lg font-bold"
@@ -79,7 +79,7 @@
 
       <nav class="flex flex-col items-center gap-8 text-center">
         <NuxtLink
-            v-for="link in navLinks"
+            v-for="link in items"
             :key="link.to"
             :to="link.to"
             class="font-heading text-2xl font-bold text-secondary hover:text-primary"
@@ -106,19 +106,25 @@
 import {ref, onMounted, onUnmounted, computed, watchEffect} from 'vue'
 import {useRoute} from '#imports'
 
+interface NavItem {
+  name: string
+  to: string
+  target?: string
+}
+
+const props = withDefaults(defineProps<{
+  menuItems?: NavItem[]
+}>(), {
+  menuItems: () => []
+})
+
+const items = computed(() => props.menuItems)
+
 const isMobileMenuOpen = ref(false)
 
 const toggleMobileMenu = () => {
   isMobileMenuOpen.value = !isMobileMenuOpen.value
 }
-
-const navLinks = ref<Array<{ name: string, to: string }>>([
-  {name: 'Quincaillerie', to: '/quincaillerie'},
-  {name: 'Transport', to: '/transport-materiaux'},
-  {name: 'Qui sommes-nous', to: '/qui-sommes-nous'},
-  {name: 'Catalogues', to: '/catalogues'},
-  {name: 'Contact', to: '/contact'}
-])
 
 const route = useRoute()
 const forcedScrollPages = [

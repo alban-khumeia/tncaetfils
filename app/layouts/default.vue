@@ -1,5 +1,5 @@
 <template>
-  <AppHeader />
+  <NavBar :menu-items="menuItems"/>
   <main>
     <slot />
   </main>
@@ -8,5 +8,8 @@
 
 <script setup lang="ts">
   import { useHeaderHeight } from '~/composables/useHeaderHeight'
+
+
   const { headerHeight } = useHeaderHeight()
+  const menuItems = useState('main-menu', () => []);
 </script>

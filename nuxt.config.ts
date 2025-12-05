@@ -46,4 +46,10 @@ export default defineNuxtConfig({
     devServer: {
         host: '0.0.0.0'
     },
+
+    runtimeConfig: {
+        public: {
+            wpApiUrl: 'https://admin.tncaetfils.re/graphql'
+        }
+    },
 })

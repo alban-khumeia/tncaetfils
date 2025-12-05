@@ -94,7 +94,6 @@
 </template>
 
 <script setup lang="ts">
-// Définition des types pour les boutons d'action
 interface HeroAction {
   label: string
   href: string
@@ -110,7 +109,6 @@ interface Props {
   variant?: 'home' | 'service'
   breadcrumb?: string
   tags?: string[]
-  // On passe les objets d'action pour configurer les boutons proprement
   primaryAction?: HeroAction
   secondaryAction?: HeroAction
 }
@@ -118,7 +116,6 @@ interface Props {
 const props = withDefaults(defineProps<Props>(), {
   variant: 'home',
   tags: () => [],
-  // Valeurs par défaut intelligentes si non fournies
   primaryAction: () => ({
     label: 'Nous appeler',
     href: 'tel:+262693034669',

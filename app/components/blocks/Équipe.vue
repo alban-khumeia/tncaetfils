@@ -3,8 +3,8 @@
     <div class="container px-4 mx-auto">
 
       <UiSectionHeader
-          title="L'équipe terrain."
-          subtitle=""
+          :title="title"
+          :subtitle="subtitle"
           class="mb-10 lg:mb-16 text-center max-w-3xl mx-auto"
       />
 
@@ -66,44 +66,15 @@ interface TeamMember {
   focalPoint?: string
 }
 
-const teamMembers: TeamMember[] = [
-  {
-    id: 1,
-    name: "Charles Nicoles",
-    role: "Fondateur",
-    quote: "Ma vision : un service fiable. Que ce soit pour 10 tonnes ou une vis, l'exigence est la même.",
-    image: "/images/equipe/pere-fondateur-Nicole-Charles.jpg"
-  },
-  {
-    id: 2,
-    name: "Fabien Nicole",
-    role: "Gérant Majoritaire",
-    quote: "15 ans de BTP. Je suis là pour trouver la solution technique, pas juste vendre un produit.",
-    image: "/images/equipe/gerant-majoritaire.jpeg",
-    focalPoint: "50% 40%",
-  },
-  {
-    id: 3,
-    name: "Roberto Nicole",
-    role: "Gestionnaire de transport et conseiller de vente quincaillerie",
-    quote: "Je connais chaque route de l'île. Votre livraison arrive, c'est garanti.",
-    image: "/images/equipe/Gestionnaire-transport-conseiller-vente-quincaillerie.jpg",
-    focalPoint: "50% 50%",
-  },
-  {
-    id: 4,
-    name: "??? Nicole",
-    role: "Secrétaire administratif",
-    quote: "Je prépare vos commandes au cordeau pour que votre chantier ne s'arrête jamais.",
-    image: "/images/equipe/secretaire-administratif.jpg"
-  },
-  {
-    id: 5,
-    name: " ?? Nicole",
-    role: " Associé et conseiller en vente quincaillerie",
-    quote: "Le chargement et l'arrimage, c'est ma responsabilité avant que vous ne preniez la route.",
-    image: "/images/equipe/Associe-conseiller-vente-quincaillerie.jpg"
-  }
-]
+interface Props {
+  title?: string;
+  subtitle?: string;
+  teamMembers?: TeamMember[];
+}
 
+withDefaults(defineProps<Props>(), {
+  title: "L'équipe terrain.",
+  subtitle: '',
+  teamMembers: () => []
+})
 </script>

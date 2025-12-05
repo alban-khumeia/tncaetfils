@@ -1,12 +1,30 @@
 <script setup lang="ts">
 import {ref} from 'vue'
 
+interface Props {
+  title?: string;
+  subtitle?: string;
+  customerTypeOptions?: string[];
+  subjectOptions?: string[];
+  rgpdText?: string;
+  submitButtonText?: string;
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  title: 'Pour un devis ou une demande écrite',
+  subtitle: 'Remplissez ce formulaire, nous vous répondons sous 24h ouvrées.',
+  customerTypeOptions: () => ['Un professionnel', 'Un particulier', 'Une collectivité'],
+  subjectOptions: () => ['Demande de devis Quincaillerie', 'Demande de devis Transport', 'Question sur un produit / stock', 'Autre...'],
+  rgpdText: 'J\'accepte que mes données soient stockées et traitées pour répondre à ma demande.',
+  submitButtonText: 'Envoyer ma demande'
+})
+
 const formData = ref({
   name: '',
   phone: '',
   email: '',
-  customerType: 'Un professionnel',
-  subject: 'Demande de devis Quincaillerie',
+  customerType: props.customerTypeOptions[0],
+  subject: props.subjectOptions[0],
   message: '',
   rgpd: false,
 })
@@ -21,10 +39,10 @@ const handleSubmit = () => {
     <div class="container mx-auto px-4">
       <div class="max-w-3xl mx-auto text-center">
         <h2 class="font-heading font-black uppercase text-3xl md:text-4xl text-foreground">
-          Pour un devis ou une demande écrite
+          {{ title }}
         </h2>
         <p class="mt-4 font-sans text-lg text-muted-foreground">
-          Remplissez ce formulaire, nous vous répondons sous 24h ouvrées.
+          {{ subtitle }}
         </p>
       </div>
 
@@ -72,9 +90,7 @@ const handleSubmit = () => {
                   v-model="formData.customerType"
                   class="appearance-none w-full border border-border bg-background text-foreground p-3 pr-10 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
               >
-                <option>Un professionnel</option>
-                <option>Un particulier</option>
-                <option>Une collectivité</option>
+                <option v-for="option in customerTypeOptions" :key="option">{{ option }}</option>
               </select>
               <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-foreground">
                 <Icon name="lucide:chevron-down" class="h-5 w-5"/>
@@ -91,10 +107,7 @@ const handleSubmit = () => {
                   v-model="formData.subject"
                   class="appearance-none w-full border border-border bg-background text-foreground p-3 pr-10 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
               >
-                <option>Demande de devis Quincaillerie</option>
-                <option>Demande de devis Transport</option>
-                <option>Question sur un produit / stock</option>
-                <option>Autre...</option>
+                <option v-for="option in subjectOptions" :key="option">{{ option }}</option>
               </select>
               <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-foreground">
                 <Icon name="lucide:chevron-down" class="h-5 w-5"/>
@@ -126,7 +139,7 @@ const handleSubmit = () => {
           </div>
           <div class="ml-3 text-sm">
             <label for="rgpd" class="font-sans text-muted-foreground">
-              J'accepte que mes données soient stockées et traitées pour répondre à ma demande.
+              {{ rgpdText }}
             </label>
           </div>
         </div>
@@ -136,7 +149,7 @@ const handleSubmit = () => {
               type="submit"
               class="w-full md:w-auto font-sans font-medium uppercase px-8 py-3 bg-primary text-white hover:bg-opacity-90 transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
           >
-            Envoyer ma demande
+            {{ submitButtonText }}
           </button>
         </div>
       </form>

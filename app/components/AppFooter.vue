@@ -83,15 +83,15 @@
           </h4>
           <ul class="space-y-3 text-sm opacity-90 max-w-xs mx-auto md:max-w-none md:mx-0">
             <li class="font-sans drop-shadow flex justify-between border-b border-white/10 pb-1 md:border-none md:pb-0 md:block">
-              <span class="font-bold md:font-normal">Lun-Ven</span>
+              <span class="font-bold md:font-normal">Lun-Ven : </span>
               <span>6h30-12h | 13h30-17h</span>
             </li>
             <li class="font-sans drop-shadow flex justify-between border-b border-white/10 pb-1 md:border-none md:pb-0 md:block">
-              <span class="font-bold md:font-normal">Samedi</span>
+              <span class="font-bold md:font-normal">Samedi : </span>
               <span>6h30 - 12h00</span>
             </li>
             <li class="font-sans drop-shadow flex justify-between md:block text-red-200 md:text-inherit">
-              <span class="font-bold md:font-normal">Dimanche</span>
+              <span class="font-bold md:font-normal">Dimanche : </span>
               <span>Fermé</span>
             </li>
           </ul>

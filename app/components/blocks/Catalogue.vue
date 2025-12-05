@@ -88,14 +88,9 @@ interface Catalog {
   badge?: string
 }
 
-const catalogs: Catalog[] = [
-  {
-    title: 'Catalogue Gros Œuvre 2025',
-    description: 'Ciment, parpaings, fers à béton... Retrouvez tous les indispensables pour vos chantiers structurants.',
-    image: '/cover-catalogue-ouverture.jpg',
-    pdfUrl: '/catalogue_gros_oeuvre_2025.pdf',
-    date: 'Janvier 2025',
-    badge: 'Nouveau',
-  },
-]
+defineProps<{
+  title?: string
+  subtitle?: string
+  catalogs: Catalog[]
+}>()
 </script>
