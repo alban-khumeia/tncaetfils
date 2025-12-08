@@ -34,6 +34,8 @@
                   object-contain
                   md:object-cover
                 "
+                format="avif,webp"
+                sizes="sm:100vw md:50vw lg:25vw"
                 loading="lazy"
             />
           </div>

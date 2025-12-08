@@ -46,4 +46,8 @@ export default defineNuxtConfig({
             wpApiUrl: 'https://admin.tncaetfils.re/graphql'
         }
     },
+
+    image: {
+        domains: ['admin.tncaetfils.re'],
+    },
 })

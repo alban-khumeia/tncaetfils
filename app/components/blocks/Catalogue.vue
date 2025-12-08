@@ -32,7 +32,9 @@
                   class="w-full h-full object-cover md:object-contain transition-transform duration-500 group-hover:scale-105"
                   width="400"
                   height="565"
-                  format="webp"
+                  format="avif,webp"
+                  densities="1x 2x"
+                  sizes="sm:100vw md:50vw lg:33vw"
                   loading="lazy"
               />
               <div class="absolute inset-0 bg-black/5 group-hover:bg-black/10 transition-colors"></div>

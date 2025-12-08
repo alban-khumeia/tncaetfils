@@ -10,6 +10,8 @@
               class="w-full h-auto max-h-[500px] object-contain mix-blend-multiply"
               width="600"
               height="500"
+              format="avif,webp"
+              sizes="md:50vw"
           />
         </div>
 
@@ -44,6 +46,8 @@
                 class="h-48 w-auto object-contain mix-blend-multiply"
                 width="400"
                 height="300"
+                format="avif,webp"
+                sizes="100vw"
             />
           </div>
 

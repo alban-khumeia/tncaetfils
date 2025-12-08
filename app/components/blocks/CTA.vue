@@ -7,7 +7,7 @@
         class="absolute inset-0 w-full h-full object-cover object-center z-0 select-none"
         width="1408"
         height="736"
-        densities="x1 x2"
+        densities="1x 2x"
         format="webp"
         loading="lazy"
         sizes="xs:100vw sm:100vw md:100vw lg:100vw xl:100vw"
@@ -44,23 +44,14 @@
 
 <script setup lang="ts">
 interface Props {
-  title?: string
-  description?: string
-  imageSrc?: string
-  imageAlt?: string
-  ctaLabel?: string
-  ctaLink?: string
-  ctaIcon?: string
+  title: string
+  description: string
+  imageSrc: string
+  imageAlt: string
+  ctaLabel: string
+  ctaLink: string
+  ctaIcon?: string // Seul celui-ci peut rester optionnel
 }
 
-// Valeurs par défaut pour correspondre à votre contenu initial
-const props = withDefaults(defineProps<Props>(), {
-  title: "Un projet ? Un besoin spécifique ?",
-  description: "De la simple vis au camion complet de matériaux, parlez-nous de votre projet. Devis gratuit sous 24h.",
-  imageSrc: "/cta.png",
-  imageAlt: "Camion de transport de matériaux sur chantier",
-  ctaLabel: "Obtenir mon devis gratuit",
-  ctaLink: "/contact",
-  ctaIcon: "lucide:file-text"
-})
+const props = defineProps<Props>()
 </script>

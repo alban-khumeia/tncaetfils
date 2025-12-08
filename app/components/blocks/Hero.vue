@@ -10,8 +10,10 @@
           class="w-full h-full object-cover transition-transform duration-700"
           :class="variant === 'home' ? 'opacity-85' : 'opacity-90 brightness-110'"
           :width="variant === 'home' ? 1248 : 1024"
+          sizes="100vw"
+          densities="1x 2x"
           preload
-          format="webp"
+          format="avif,webp"
           quality="80"
       />
     </div>

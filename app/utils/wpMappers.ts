@@ -162,21 +162,18 @@ const mapCatalogue = (block: any, globalCatalogs: any[] = []) => {
     };
 };
 
-const mapCta = (block: any) => {
+export const mapCta = (block: any) => {
     const link = block.bouton || {};
     const image = block.imageArrierePlan?.node;
 
     return {
-        title: block.titre || 'Un projet ?',
-        description: block.description || '',
-
-        imageSrc: image?.sourceUrl || undefined,
-        imageAlt: image?.altText || block.titre,
-
-        ctaLabel: link.title || 'En savoir plus',
-        ctaLink: link.url || '#',
-
-        ctaIcon: block.icone || undefined
+        title: block.titre || 'Un projet ? Un besoin spécifique ?',
+        description: block.description || 'De la simple vis au camion complet de matériaux, parlez-nous de votre projet. Devis gratuit sous 24h.',
+        imageSrc: image?.sourceUrl || '/cta.png',
+        imageAlt: image?.altText || block.titre || 'Camion de transport de matériaux',
+        ctaLabel: link.title || 'Obtenir mon devis gratuit',
+        ctaLink: link.url || '/contact',
+        ctaIcon: block.icone || 'lucide:file-text'
     };
 };
 

@@ -25,7 +25,9 @@
                 :alt="`Portrait de ${member.name}`"
                 class="w-full h-full object-cover filter grayscale-[10%] group-hover:grayscale-0 transition-all duration-500"
                 :style="{ objectPosition: member.focalPoint || 'top' }"
-                sizes="(max-width: 1024px) 150px, 400px"
+                sizes="150px lg:400px"
+                densities="1x 2x"
+                format="avif,webp"
                 loading="lazy"
             />
           </div>
