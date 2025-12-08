@@ -1,5 +1,6 @@
 <template>
   <header
+      ref="headerRef"
       class="fixed w-full top-0 z-50 transition-all duration-300"
       :class="{
       'bg-white shadow-lg': isScrolled,
@@ -105,6 +106,7 @@
 <script setup lang="ts">
 import {ref, onMounted, onUnmounted, computed, watchEffect} from 'vue'
 import {useRoute} from '#imports'
+import { useHeaderHeight } from '~/composables/useHeaderHeight'
 
 interface NavItem {
   name: string
@@ -128,9 +130,7 @@ const toggleMobileMenu = () => {
 
 const route = useRoute()
 
-// Récupérer les pages qui doivent forcer le style scrolled depuis le menu dynamique
 const forcedScrollPages = computed(() => {
-  // Filtrer les pages par leurs noms (ou adapter selon vos besoins)
   const pagesToForce = ['Catalogues', 'Contact', 'Qui sommes-nous']
   return items.value
       .filter(item => pagesToForce.includes(item.name))
@@ -148,8 +148,12 @@ const handleScroll = () => {
   isScrolledByWindow.value = window.scrollY > scrollThreshold;
 }
 
+const { setHeaderHeight, setHeaderScrolled } = useHeaderHeight()
+
 const isScrolled = computed(() => {
-  return isForceScrolled.value || isScrolledByWindow.value
+  const scrolled = isForceScrolled.value || isScrolledByWindow.value
+  setHeaderScrolled(scrolled)
+  return scrolled
 })
 
 const logoClasses = computed(() => {
@@ -179,12 +183,28 @@ watchEffect(() => {
   }
 })
 
+const headerRef = ref<HTMLElement | null>(null)
+let observer: ResizeObserver | null = null
+
 onMounted(() => {
   handleScroll()
   window.addEventListener('scroll', handleScroll)
+
+  if (headerRef.value) {
+    setHeaderHeight(headerRef.value.offsetHeight)
+    observer = new ResizeObserver(() => {
+      if (headerRef.value) {
+        setHeaderHeight(headerRef.value.offsetHeight)
+      }
+    })
+    observer.observe(headerRef.value)
+  }
 })
 
 onUnmounted(() => {
   window.removeEventListener('scroll', handleScroll)
+  if (observer) {
+    observer.disconnect()
+  }
 })
 </script>

@@ -1,9 +1,9 @@
 <template>
-  <section id="contact" class="py-12 lg:py-24 bg-background scroll-mt-8 lg:scroll-mt-16">
+  <UiBlockContainer id="contact" class="bg-background scroll-mt-8 lg:scroll-mt-16">
     <div class="container mx-auto px-4">
 
       <UiSectionHeader
-          v-if="title"
+          vif="title"
           :title="title"
           class="mb-10 lg:mb-16 text-center max-w-3xl mx-auto"
       />
@@ -107,7 +107,7 @@
         </div>
       </div>
     </div>
-  </section>
+  </UiBlockContainer>
 </template>
 
 <script setup lang="ts">

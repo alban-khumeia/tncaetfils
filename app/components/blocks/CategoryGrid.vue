@@ -1,5 +1,5 @@
 <template>
-  <section id="quincaillerie" class="py-8 md:py-16 bg-background">
+  <UiBlockContainer id="quincaillerie" class="bg-background">
     <div class="container mx-auto px-4">
       <UiSectionHeader
           v-if="title"
@@ -73,7 +73,7 @@
       </div>
 
     </div>
-  </section>
+  </UiBlockContainer>
 </template>
 
 <script setup lang="ts">

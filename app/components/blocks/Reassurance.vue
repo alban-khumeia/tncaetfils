@@ -1,7 +1,6 @@
 <template>
-  <section class="py-8 bg-muted lg:py-20">
+  <UiBlockContainer class="bg-muted">
     <div class="container px-4 mx-auto">
-
       <UiSectionHeader
           class="mb-8 text-center lg:mb-16 max-w-3xl mx-auto"
           :title="title"
@@ -65,7 +64,7 @@
       </div>
 
     </div>
-  </section>
+  </UiBlockContainer>
 </template>
 
 <script setup lang="ts">

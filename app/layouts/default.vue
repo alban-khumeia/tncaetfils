@@ -1,6 +1,6 @@
 <template>
   <NavBar :menu-items="headerLinks"/>
-  <main>
+  <main :style="{ paddingTop: isHeaderScrolled ? headerHeight + 'px' : '0' }">
     <slot />
   </main>
   <AppFooter
@@ -14,8 +14,9 @@
   import { useHeaderHeight } from '~/composables/useHeaderHeight'
   import {GET_LAYOUT_DATA} from '~/queries/getGlobals';
   import {mapMenu, mapLocalSection} from '~/utils/wpMappers';
+  import {computed} from "vue";
 
-  const { headerHeight } = useHeaderHeight()
+  const { headerHeight, isHeaderScrolled } = useHeaderHeight()
 
   const GRAPHQL_ENDPOINT = 'https://admin.tncaetfils.re/graphql';
 

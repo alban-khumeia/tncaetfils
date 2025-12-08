@@ -35,7 +35,7 @@ const handleSubmit = () => {
 </script>
 
 <template>
-  <section class="bg-background py-16 md:py-24">
+  <UiBlockContainer class="bg-background">
     <div class="container mx-auto px-4">
       <div class="max-w-3xl mx-auto text-center">
         <h2 class="font-heading font-black uppercase text-3xl md:text-4xl text-foreground">
@@ -154,5 +154,5 @@ const handleSubmit = () => {
         </div>
       </form>
     </div>
-  </section>
+  </UiBlockContainer>
 </template>

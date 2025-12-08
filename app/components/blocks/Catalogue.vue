@@ -1,5 +1,5 @@
 <template>
-  <section class="py-12 md:py-16 bg-background">
+  <UiBlockContainer class="bg-background">
     <div class="container mx-auto px-4">
       <UiSectionHeader
           class="mb-10 md:mb-16"
@@ -75,7 +75,7 @@
         </UiBaseButton>
       </div>
     </div>
-  </section>
+  </UiBlockContainer>
 </template>
 
 <script setup lang="ts">

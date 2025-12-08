@@ -1,5 +1,5 @@
 <template>
-  <section id="transport" class="py-12 md:py-24 bg-muted overflow-hidden">
+  <UiBlockContainer id="transport" class="bg-muted overflow-hidden">
     <div class="container mx-auto px-4">
       <div class="grid md:grid-cols-2 gap-8 md:gap-16 items-center">
 
@@ -59,7 +59,7 @@
 
       </div>
     </div>
-  </section>
+  </UiBlockContainer>
 </template>
 
 <script setup lang="ts">

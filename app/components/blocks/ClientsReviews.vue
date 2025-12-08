@@ -1,5 +1,5 @@
 <template>
-  <section class="py-12 md:py-24 bg-secondary overflow-hidden">
+  <UiBlockContainer class="bg-secondary overflow-hidden">
     <div class="container mx-auto px-4">
 
       <UiSectionHeader
@@ -66,7 +66,7 @@
         </div>
       </div>
     </div>
-  </section>
+  </UiBlockContainer>
 </template>
 
 <script setup lang="ts">

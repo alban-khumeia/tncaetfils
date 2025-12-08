@@ -1,5 +1,5 @@
 <template>
-  <section class="relative py-12 md:py-20 overflow-hidden bg-slate-900 isolation-auto">
+  <UiBlockContainer class="relative overflow-hidden bg-slate-900 isolation-auto">
 
     <NuxtImg
         :src="props.imageSrc"
@@ -39,7 +39,7 @@
       </div>
 
     </div>
-  </section>
+  </UiBlockContainer>
 </template>
 
 <script setup lang="ts">

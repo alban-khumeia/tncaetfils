@@ -1,16 +1,21 @@
 import { ref, readonly } from 'vue'
 
-// Crée un état global simple (ou utilisez Pinia si vous préférez)
 const headerHeight = ref(0)
+const isHeaderScrolled = ref(false)
 
 export function useHeaderHeight() {
-const setHeaderHeight = (height: number) => {
-headerHeight.value = height
-}
+  const setHeaderHeight = (height: number) => {
+    headerHeight.value = height
+  }
 
-return {
-// 'readonly' pour que les layouts ne puissent que lire la valeur
-headerHeight: readonly(headerHeight),
-setHeaderHeight,
-}
+  const setHeaderScrolled = (scrolled: boolean) => {
+    isHeaderScrolled.value = scrolled
+  }
+
+  return {
+    headerHeight: readonly(headerHeight),
+    isHeaderScrolled: readonly(isHeaderScrolled),
+    setHeaderHeight,
+    setHeaderScrolled,
+  }
 }
