@@ -16,19 +16,9 @@ export default defineNuxtConfig({
     fonts: {
         families: [
             {
-                name: 'Inter',
-                provider: 'google',
-                weights: ['400', '700', '900']
-            },
-            {
                 name: 'Roboto',
                 provider: 'google',
                 weights: ['400','500','600', '700']
-            },
-            {
-                name: 'Montserrat',
-                provider: 'google',
-                weights: ['400', '700', '900']
             },
             {
                 name: 'Lexend',
@@ -40,7 +30,11 @@ export default defineNuxtConfig({
 
     ssr: true,
     nitro: {
-        preset: 'static'
+        preset: 'static',
+        prerender: {
+            crawlLinks: true,
+            routes: ['/']
+        }
     },
 
     devServer: {

@@ -191,7 +191,7 @@ const mapFaq = (block: any) => {
     };
 };
 
-const mapMenu = (menuData: any) => {
+export const mapMenu = (menuData: any) => {
     const items = menuData?.menuItems?.nodes || [];
 
     return items.map((item: any) => ({
@@ -302,7 +302,7 @@ export const mapPageBuilder = (blocks: any[], globalData: any = null, acfOptions
         const type = block.__typename || '';
 
         // DEBUG : Décommente cette ligne si un bloc ne s'affiche pas pour voir son VRAI nom
-        console.log(`Bloc ${index}:`, type);
+        //console.log(`Bloc ${index}:`, type);
 
         switch (type) {
             // 1. Hero

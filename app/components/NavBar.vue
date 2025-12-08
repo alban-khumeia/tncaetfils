@@ -127,14 +127,18 @@ const toggleMobileMenu = () => {
 }
 
 const route = useRoute()
-const forcedScrollPages = [
-  '/catalogues',
-  '/contact',
-  '/qui-sommes-nous'
-]
+
+// Récupérer les pages qui doivent forcer le style scrolled depuis le menu dynamique
+const forcedScrollPages = computed(() => {
+  // Filtrer les pages par leurs noms (ou adapter selon vos besoins)
+  const pagesToForce = ['Catalogues', 'Contact', 'Qui sommes-nous']
+  return items.value
+      .filter(item => pagesToForce.includes(item.name))
+      .map(item => item.to)
+})
 
 const isForceScrolled = computed(() => {
-  return forcedScrollPages.includes(route.path)
+  return forcedScrollPages.value.includes(route.path)
 })
 
 const isScrolledByWindow = ref(false)

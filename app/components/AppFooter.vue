@@ -28,27 +28,14 @@
             Navigation
           </h4>
           <ul class="grid grid-cols-2 md:block gap-2 md:space-y-2 text-sm text-center md:text-left">
-            <li>
-              <a href="/#quincaillerie"
-                 class="block py-2 md:py-0 opacity-90 hover:opacity-100 hover:underline drop-shadow">
-                Quincaillerie
-              </a>
-            </li>
-            <li>
-              <a href="/#transport" class="block py-2 md:py-0 opacity-90 hover:opacity-100 hover:underline drop-shadow">
-                Transport
-              </a>
-            </li>
-            <li>
-              <a href="/#qui-sommes-nous"
-                 class="block py-2 md:py-0 opacity-90 hover:opacity-100 hover:underline drop-shadow">
-                Qui sommes-nous
-              </a>
-            </li>
-            <li>
-              <a href="/#contact" class="block py-2 md:py-0 opacity-90 hover:opacity-100 hover:underline drop-shadow">
-                Contact
-              </a>
+            <li v-for="link in mainNav" :key="link.to">
+              <NuxtLink
+                  :to="link.to"
+                  :target="link.target || '_self'"
+                  class="block py-2 md:py-0 opacity-90 hover:opacity-100 hover:underline drop-shadow transition-opacity"
+              >
+                {{ link.name }}
+              </NuxtLink>
             </li>
           </ul>
         </div>
@@ -59,10 +46,10 @@
           </h4>
           <ul class="space-y-4 text-sm">
             <li class="flex flex-col md:flex-row items-center md:items-start gap-2">
-              <a href="tel:+262693034669"
+              <a :href="contactInfo.phoneHref"
                  class="flex items-center justify-center gap-3 w-full md:w-auto bg-white/10 md:bg-transparent border border-white/20 md:border-none rounded p-3 md:p-0 hover:bg-white/20 transition-colors font-bold text-lg md:text-sm md:font-normal shadow-lg md:shadow-none">
                 <Icon name="lucide:phone" class="h-5 w-5 drop-shadow"/>
-                <span>06 93 034 669</span>
+                <span>{{ contactInfo.phoneDisplay }}</span>
               </a>
             </li>
             <li class="flex flex-col md:flex-row items-center md:items-start gap-2 text-center md:text-left">
@@ -70,8 +57,7 @@
               <a href="https://maps.google.com/?q=53+Chemin+Anaclet+Benard+97432" target="_blank"
                  class="opacity-90 hover:opacity-100 hover:underline drop-shadow block p-2 md:p-0">
                 <span class="md:hidden block mb-1 font-bold uppercase text-xs text-white/60">Y aller :</span>
-                53 Chemin Anaclet Benard<br/>
-                97432 Ravine des Cabris
+                <span v-html="contactInfo.address"></span>
               </a>
             </li>
           </ul>
@@ -82,17 +68,11 @@
             Horaires
           </h4>
           <ul class="space-y-3 text-sm opacity-90 max-w-xs mx-auto md:max-w-none md:mx-0">
-            <li class="font-sans drop-shadow flex justify-between border-b border-white/10 pb-1 md:border-none md:pb-0 md:block">
-              <span class="font-bold md:font-normal">Lun-Ven : </span>
-              <span>6h30-12h | 13h30-17h</span>
-            </li>
-            <li class="font-sans drop-shadow flex justify-between border-b border-white/10 pb-1 md:border-none md:pb-0 md:block">
-              <span class="font-bold md:font-normal">Samedi : </span>
-              <span>6h30 - 12h00</span>
-            </li>
-            <li class="font-sans drop-shadow flex justify-between md:block text-red-200 md:text-inherit">
-              <span class="font-bold md:font-normal">Dimanche : </span>
-              <span>Fermé</span>
+            <li v-for="hour in contactInfo.hours" :key="hour.label"
+                class="font-sans drop-shadow flex justify-between border-b border-white/10 pb-1 md:border-none md:pb-0 md:block"
+                :class="{'text-red-200 md:text-inherit': hour.isClosed}">
+              <span class="font-bold md:font-normal">{{ hour.label }} : </span>
+              <span>{{ hour.value }}</span>
             </li>
           </ul>
         </div>
@@ -137,9 +117,15 @@
           class="border-t border-background/20 pt-8 text-center text-xs md:text-sm opacity-75 drop-shadow flex flex-col md:block gap-4">
         <p>&copy; {{ new Date().getFullYear() }} TNCA ET FILS. Tous droits réservés.</p>
         <div class="flex flex-wrap justify-center gap-x-4 gap-y-2">
-          <a href="#" class="hover:underline drop-shadow p-1">Mentions légales</a>
-          <a href="#" class="hover:underline drop-shadow p-1">Politique de confidentialité</a>
-          <a href="#" class="hover:underline drop-shadow p-1">CGV</a>
+          <NuxtLink
+              v-for="link in legalNav"
+              :key="link.to"
+              :to="link.to"
+              :target="link.target || '_self'"
+              class="hover:underline drop-shadow p-1"
+          >
+            {{ link.name }}
+          </NuxtLink>
         </div>
 
         <div class="mt-4 pt-4 border-t border-white/10 md:border-none md:pt-0 md:mt-2">
@@ -160,4 +146,40 @@
 </template>
 
 <script setup lang="ts">
+import {computed} from 'vue';
+
+interface NavItem {
+  name: string
+  to: string
+  target?: string
+}
+
+interface ContactInfo {
+  address: string;
+  phoneDisplay: string;
+  phoneHref: string;
+  hours: { label: string; value: string; isClosed: boolean }[];
+}
+
+const props = withDefaults(defineProps<{
+  mainLinks?: NavItem[],
+  legalLinks?: NavItem[],
+  contactInfo?: ContactInfo
+}>(), {
+  mainLinks: () => [],
+  legalLinks: () => [],
+  contactInfo: () => ({
+    address: '53 Chemin Anaclet Benard<br/>97432 Ravine des Cabris',
+    phoneDisplay: '06 93 034 669',
+    phoneHref: 'tel:+262693034669',
+    hours: [
+      {label: 'Lun-Ven', value: '6h30-12h | 13h30-17h', isClosed: false},
+      {label: 'Samedi', value: '6h30 - 12h00', isClosed: false},
+      {label: 'Dimanche', value: 'Fermé', isClosed: true}
+    ]
+  })
+})
+
+const mainNav = computed(() => props.mainLinks)
+const legalNav = computed(() => props.legalLinks)
 </script>

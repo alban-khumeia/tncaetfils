@@ -10,7 +10,6 @@ import {
     CATALOG_ITEM_FRAGMENT,
     CTA_LAYOUT_FRAGMENT,
     FAQ_LAYOUT_FRAGMENT,
-    MENU_FRAGMENT,
     CATEGORIES_FRAGMENT,
     REASSURANCE_FRAGMENT,
     EQUIPE_FRAGMENT,
@@ -19,9 +18,6 @@ import {
 
 export const GET_PAGE_QUERY = `
   query GetPage($uri: ID!) {
-  menu: menu(id: "primary", idType: LOCATION) {
-      ...MenuFragment
-    }
     
     page(id: $uri, idType: URI) {
       pageBuilder {
@@ -68,7 +64,6 @@ export const GET_PAGE_QUERY = `
   ${CATALOG_ITEM_FRAGMENT}
   ${CTA_LAYOUT_FRAGMENT}
   ${FAQ_LAYOUT_FRAGMENT}
-  ${MENU_FRAGMENT}
   ${CATEGORIES_FRAGMENT}
   ${REASSURANCE_FRAGMENT}
   ${EQUIPE_FRAGMENT}
