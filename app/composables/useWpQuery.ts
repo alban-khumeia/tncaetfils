@@ -7,7 +7,7 @@ export const useWpQuery = (query: string, variables = {}) => {
         // Clé unique pour le cache (basée sur la requête)
         'wp-' + JSON.stringify(variables),
 
-        () => $fetch(config.public.wpApiUrl, {
+        () => $fetch(config.wpApiUrl, {
             method: 'POST',
             body: {
                 query,
