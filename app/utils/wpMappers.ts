@@ -27,12 +27,15 @@ const normalizeSelect = (value: any) => {
 // Sécurise les tableaux pour éviter le crash "map of null"
 const safeArray = (arr: any): any[] => Array.isArray(arr) ? arr : [];
 
-// CORRECTION HYDRATATION DATE
+// DATE
 const formatDateToMonthYear = (dateString: string): string => {
     if (!dateString) return '';
-    // On force le format YYYY-MM-DD sans heure pour éviter les décalages UTC/Local
-    // On ajoute une heure fixe à midi pour être sûr de tomber le bon jour
-    const date = new Date(`${dateString}T12:00:00`);
+
+    const dateToParse = dateString.includes('T')
+        ? dateString
+        : `${dateString}T12:00:00`;
+
+    const date = new Date(dateToParse);
 
     if (isNaN(date.getTime())) return dateString;
 
@@ -41,6 +44,7 @@ const formatDateToMonthYear = (dateString: string): string => {
             month: 'long',
             year: 'numeric'
         }).format(date);
+
         return formatted.charAt(0).toUpperCase() + formatted.slice(1);
     } catch (e) {
         return dateString;
@@ -55,7 +59,6 @@ const GRID_STYLES: Record<string, string> = {
 };
 
 // --- MAPPERS ---
-
 export const mapHero = (wpData: any) => {
     return {
         variant: normalizeSelect(wpData.variant) || 'home',
@@ -165,7 +168,7 @@ const mapClientsReviews = (block: any) => {
             author: review.author || 'Anonyme',
             role: review.role || '',
             content: review.content || '',
-            date: review.date || '',
+            date: formatDateToMonthYear(review.date) || '',
             rating: Number(review.rating) || 5
         }))
     };
@@ -209,7 +212,7 @@ export const mapCta = (block: any) => {
         imageAlt: image?.altText || block.titre || '',
         imageWidth: image?.node?.mediaDetails?.width || 1408,
         imageHeight: image?.node?.mediaDetails?.height || 736,
-        ctaLabel: link.title || 'Contact',
+        ctaLabel: link.title || 'Nous contacter',
         ctaLink: link.url || '/contact',
         ctaIcon: block.icone || 'lucide:arrow-right'
     };

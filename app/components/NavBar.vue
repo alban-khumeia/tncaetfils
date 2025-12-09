@@ -8,7 +8,7 @@
     }"
   >
     <div class="w-full max-w-[1920px] mx-auto px-4 md:px-10 py-2">
-      <div class="flex items-center justify-between">
+      <div class="flex items-center justify-between gap-4 lg:gap-0">
         <div class="flex items-center gap-8">
           <NuxtLink to="/">
             <NuxtImg
@@ -22,12 +22,12 @@
             />
           </NuxtLink>
 
-          <nav class="hidden md:flex items-center gap-6">
+          <nav class="hidden md:flex items-center gap-3 lg:gap-6 text-center text-balance">
             <NuxtLink
                 v-for="link in items"
                 :key="link.to"
                 :to="link.to"
-                class="transition-colors font-heading text-lg font-bold"
+                class="transition-colors font-heading text-sm lg:text-lg font-bold"
                 :class="{
       'text-secondary hover:text-primary': isScrolled,
       'text-white hover:text-primary drop-shadow-md': !isScrolled
@@ -40,7 +40,7 @@
 
         <div class="flex items-center gap-4">
           <UiBaseButton
-              class="h-12 hidden md:inline-flex transition-all duration-300"
+              class="h-12 hidden md:inline-flex transition-all duration-300 text-balance"
               :variant="isScrolled ? 'solid' : 'outline'"
               :class="{
         'border-white text-white hover:bg-white/10 hover:text-white': !isScrolled,

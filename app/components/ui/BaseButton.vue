@@ -1,8 +1,7 @@
 <template>
   <component
       :is="componentTag"
-      :to="to"
-      :href="href"
+      :to="normalizedPath"
       :class="computedClasses"
       v-bind="$attrs"
   >
@@ -12,11 +11,7 @@
         :class="iconSizeClass"
         aria-hidden="true"
     />
-
-    <span>
-      <slot/>
-    </span>
-
+    <span><slot/></span>
     <Icon
         v-if="trailingIcon"
         :name="trailingIcon"
@@ -27,8 +22,8 @@
 </template>
 
 <script setup lang="ts">
-import {computed, useAttrs} from 'vue'
-import {twMerge} from "tailwind-merge";
+import {computed, useAttrs, resolveComponent} from 'vue'
+import {twMerge} from "tailwind-merge"
 
 defineOptions({
   inheritAttrs: false
@@ -37,8 +32,8 @@ defineOptions({
 const attrs = useAttrs()
 
 const props = withDefaults(defineProps<{
-  to?: string
-  href?: string
+  to?: string | null // On accepte null au cas où le mapper renvoie null
+  href?: string | null // Pour la rétrocompatibilité
   variant?: 'solid' | 'outline' | 'ghost' | 'glass'
   size?: 'sm' | 'md' | 'lg'
   leadingIcon?: string
@@ -47,14 +42,28 @@ const props = withDefaults(defineProps<{
   variant: 'solid',
   size: 'md',
   to: undefined,
-  href: undefined,
-  leadingIcon: undefined,
-  trailingIcon: undefined,
+  href: undefined, // Optionnel, si tu veux garder la compatibilité
 })
 
+// 1. On unifie la destination
+// Si 'to' est présent, on l'utilise. Sinon on regarde 'href'.
+const destination = computed(() => props.to || props.href)
+
+// 2. On nettoie le chemin (Optionnel mais sécurisant pour WP)
+// Si le lien est vide, on retourne undefined pour désactiver le lien
+const normalizedPath = computed(() => {
+  return destination.value ? destination.value : undefined
+})
+
+// 3. Résolution du composant
+const NuxtLink = resolveComponent('NuxtLink')
+
 const componentTag = computed(() => {
-  if (props.href) return 'a'
-  if (props.to) return 'NuxtLink'
+  // Si on a une destination valide -> NuxtLink (qui gérera a href ou router-link)
+  if (normalizedPath.value) {
+    return NuxtLink
+  }
+  // Sinon -> C'est un bouton d'action (ex: submit formulaire, ouvrir modal)
   return 'button'
 })
 

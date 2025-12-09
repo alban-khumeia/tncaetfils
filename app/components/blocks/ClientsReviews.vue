@@ -74,10 +74,10 @@
 export interface ReviewItem {
   id?: number | string
   author: string
-  role?: string // Optionnel, car WP n'a pas toujours ce champ par défaut
+  role?: string
   content: string
   date: string
-  rating: number // 1 à 5
+  rating: number
 }
 
 // Définition des props avec valeurs par défaut

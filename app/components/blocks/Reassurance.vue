@@ -54,9 +54,10 @@
         <div v-if="cta" class="w-full sm:w-auto">
           <UiBaseButton
               :to="cta.to"
-              leading-icon="lucide-lab:toolbox"
+              trailing-icon="lucide:truck"
               variant="solid"
               class="w-full justify-center shadow-lg shadow-primary/20"
+              size="md"
           >
             {{ cta.text }}
           </UiBaseButton>

@@ -67,7 +67,7 @@
         </div>
       </div>
 
-      <div class="mt-12 md:mt-16 bg-muted/30 rounded-xl p-6 md:p-8 text-center border border-border/50">
+      <!--<div class="mt-12 md:mt-16 bg-muted/30 rounded-xl p-6 md:p-8 text-center border border-border/50">
         <p class="text-foreground font-medium mb-4 md:mb-6 max-w-2xl mx-auto">
           Pas le temps de chercher ? Recevez nos nouveaux catalogues directement par email.
         </p>
@@ -75,7 +75,7 @@
                       class="w-full md:w-auto justify-center h-12 md:h-10 text-base">
           <span>M'inscrire à la newsletter</span>
         </UiBaseButton>
-      </div>
+      </div>!-->
     </div>
   </UiBlockContainer>
 </template>
