@@ -2,15 +2,16 @@
   <UiBlockContainer class="relative overflow-hidden bg-slate-900 isolation-auto">
 
     <NuxtImg
-        :src="props.imageSrc"
-        :alt="props.imageAlt"
+        :src="imageSrc"
+        :alt="imageAlt"
         class="absolute inset-0 w-full h-full object-cover object-center z-0 select-none"
-        width="1408"
-        height="736"
+        :width="imageWidth"
+        :height="imageHeight"
         densities="1x 2x"
-        format="webp"
+        format="avif,webp"
         loading="lazy"
-        sizes="xs:100vw sm:100vw md:100vw lg:100vw xl:100vw"
+        sizes="100vw sm:100vw md:100vw lg:100vw xl:100vw 2xl:1536px"
+        quality="80"
     />
 
     <div class="absolute inset-0 bg-black/70 md:bg-black/60 z-10 pointer-events-none"></div>
@@ -48,9 +49,11 @@ interface Props {
   description: string
   imageSrc: string
   imageAlt: string
+  imageWidth: number
+  imageHeight: number
   ctaLabel: string
   ctaLink: string
-  ctaIcon?: string // Seul celui-ci peut rester optionnel
+  ctaIcon?: string
 }
 
 const props = defineProps<Props>()

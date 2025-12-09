@@ -8,6 +8,10 @@ export const HERO_FRAGMENT = `
       node {
         sourceUrl
         altText
+        mediaDetails {
+          width
+          height
+        }
       }
     }
     tags {
@@ -72,6 +76,10 @@ export const TRANSPORT_SECTION_FRAGMENT = `
       node {
         sourceUrl
         altText
+        mediaDetails {
+          width
+          height
+        }
       }
     }
     services {
@@ -158,6 +166,10 @@ export const CTA_LAYOUT_FRAGMENT = `
       node {
         sourceUrl
         altText
+        mediaDetails {
+          width
+          height
+        }
       }
     }
     bouton {

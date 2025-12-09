@@ -7,11 +7,12 @@
       <NuxtImg
           :src="imageSrc"
           :alt="imageAlt"
+          :width="imageWidth"
+          :height="imageHeight"
           class="w-full h-full object-cover transition-transform duration-700"
           :class="variant === 'home' ? 'opacity-85' : 'opacity-90 brightness-110'"
-          :width="variant === 'home' ? 1248 : 1024"
-          sizes="100vw"
-          densities="1x 2x"
+          sizes="100vw sm:100vw md:100vw lg:100vw xl:100vw 2xl:1536px"
+          fetchpriority="high"
           preload
           format="avif,webp"
           quality="80"
@@ -108,6 +109,8 @@ interface Props {
   subtitle: string
   imageSrc: string
   imageAlt: string
+  imageWidth: number
+  imageHeight: number
   variant?: 'home' | 'service'
   breadcrumb?: string
   tags?: string[]

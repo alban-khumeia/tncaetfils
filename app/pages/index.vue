@@ -1,17 +1,13 @@
 <template>
   <div>
-    <div v-if="!data" class="py-20 text-center">
-      Chargement...
-    </div>
-
-    <div v-else-if="sections.length === 0" class="py-20 text-center">
-      Aucune section trouvée (Vérifie si la page est remplie dans WP)
+    <div v-if="!data?.page" class="py-20 text-center">
+      Chargement ou Page introuvable...
     </div>
 
     <div v-else>
       <component
           v-for="(section, index) in sections"
-          :key="index"
+          :key="section.id || index"
           :is="componentRegistry[section.component]"
           v-bind="section.props"
       />
@@ -36,7 +32,6 @@ import Reassurance from '~/components/blocks/Reassurance.vue';
 import Equipe from '~/components/blocks/Équipe.vue';
 import Formulaire from '~/components/blocks/Formulaire.vue';
 
-// 1. Correction du registre
 const componentRegistry: Record<string, any> = {
   'HeroSection': Hero,
   'CategoryGrid': CategoryGrid,
@@ -54,42 +49,39 @@ const componentRegistry: Record<string, any> = {
 };
 
 const route = useRoute();
-const uri = route.path === '/' ? '/' : route.path;
+const dev = import.meta.dev; // Pour le debug
 
-console.log('--- DEBUG START ---');
-console.log('1. URI demandée:', uri);
+// Normalisation URI
+const uri = route.path === '/' ? '/' : route.path.replace(/\/$/, '');
 
-const {data, error} = await useWpQuery(GET_PAGE_QUERY, {uri});
+// 1. APPEL API
+const {data} = await useWpQuery(GET_PAGE_QUERY, {uri});
 
+// 2. MAPPING DONNÉES GLOBALES
 const globalData = computed(() => {
-  return mapGlobalData(data.value?.data);
+  return mapGlobalData(data.value);
 });
 
+// Injection Menu
 const mainMenuState = useState('main-menu');
-if (globalData.value.menuItems) {
+if (globalData.value?.menuItems) {
   mainMenuState.value = globalData.value.menuItems;
 }
 
-if (error.value) {
-  console.error('2. ERREUR API:', error.value);
-} else {
-  console.log('2. Données reçues:', data.value);
+const companyInfoState = useState('company-info');
+if (globalData.value?.settings) {
+  companyInfoState.value = globalData.value.settings;
 }
 
+// 3. MAPPING PAGE BUILDER
 const sections = computed(() => {
-  // Récupération sécurisée des données
-  const pageData = data.value?.data?.page;
-  const companySettings = globalData.value.settings;
-  const acfOptions = data.value?.data?.acfOptions;
+  if (!data.value?.page) return [];
 
-  if (!pageData) {
-    console.warn('3. Pas de page trouvée dans la réponse JSON');
-    return [];
-  }
+  const pageData = data.value.page;
+  const acfOptions = data.value.acfOptions;
 
   const rawData = pageData.pageBuilder?.flexContent;
 
-  // 3. On passe les 3 arguments au mapper
-  return mapPageBuilder(rawData || [], companySettings, acfOptions);
+  return mapPageBuilder(rawData || [], globalData.value, acfOptions);
 });
 </script>

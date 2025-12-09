@@ -5,13 +5,13 @@
 
         <div class="hidden md:block relative md:order-2">
           <NuxtImg
-              src="/camion.png"
-              alt="Camion livraison matériaux"
-              class="w-full h-auto max-h-[500px] object-contain mix-blend-multiply"
-              width="600"
-              height="500"
+              :src="imageSrc"
+              :alt="imageAlt"
+              class="w-full h-auto max-h-[750px] object-contain mix-blend-multiply"
+              :width="imageWidth"
+              :height="imageHeight"
               format="avif,webp"
-              sizes="md:50vw"
+              sizes="xs:1px md:50vw xl:1050px"
           />
         </div>
 
@@ -39,15 +39,15 @@
           </div>
 
           <div
-              class="md:hidden relative w-full -mx-4 mb-4 flex justify-center bg-gradient-to-r from-transparent via-white/40 to-transparent">
+              class="md:hidden relative w-full -mx-4 flex justify-center bg-gradient-to-r from-transparent via-white/40 to-transparent">
             <NuxtImg
                 :src="imageSrc"
                 :alt="imageAlt"
-                class="h-48 w-auto object-contain mix-blend-multiply"
-                width="400"
-                height="300"
+                class="h-72 w-auto object-contain mix-blend-multiply"
+                :width="imageWidth"
+                :height="imageHeight"
                 format="avif,webp"
-                sizes="100vw"
+                sizes="600px md:1px"
             />
           </div>
 
@@ -55,7 +55,8 @@
               v-if="cta"
               size="lg"
               :to="cta.href"
-              class="w-full md:w-auto font-bold tracking-wide shadow-lg z-10"
+              trailing-icon="lucide:truck"
+              class="w-full text-center md:w-auto font-bold tracking-wide shadow-lg z-10"
           >
             {{ cta.label }}
           </UiBaseButton>
@@ -85,6 +86,8 @@ defineProps<{
   description: string
   imageSrc: string
   imageAlt?: string
+  imageWidth: number
+  imageHeight: number
   services: ServiceItem[]
   cta?: CtaLink | null
 }>()

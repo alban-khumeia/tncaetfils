@@ -43,8 +43,9 @@ export default defineNuxtConfig({
     },
 
     runtimeConfig: {
-        wpApiUrl: 'https://admin.tncaetfils.re/graphql',
-        public: {}
+        public: {
+            wpApiUrl: 'https://admin.tncaetfils.re/graphql',
+        }
     },
 
     image: {

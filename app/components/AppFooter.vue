@@ -4,7 +4,12 @@
         src="/footer.jpg"
         alt=""
         role="presentation"
-        placeholder
+        :width="5000"
+        :height="3451"
+        sizes="100vw 2xl:1536px"
+        format="avif,webp"
+        quality="70"
+        loading="lazy"
         class="absolute inset-0 w-full h-full object-cover object-bottom z-0 pointer-events-none"
     />
 
@@ -70,9 +75,9 @@
           <ul class="space-y-3 text-sm opacity-90 max-w-xs mx-auto md:max-w-none md:mx-0">
             <li v-for="hour in contactInfo.hours" :key="hour.label"
                 class="font-sans drop-shadow flex justify-between border-b border-white/10 pb-1 md:border-none md:pb-0 md:block"
-                :class="{'text-red-200 md:text-inherit': hour.isClosed}">
+                :class="{'text-red-400 font-medium': hour.isClosed}">
               <span class="font-bold md:font-normal">{{ hour.label }} : </span>
-              <span>{{ hour.value }}</span>
+              <span>{{ hour.isClosed ? 'Fermé' : hour.value }}</span>
             </li>
           </ul>
         </div>
@@ -175,7 +180,7 @@ const props = withDefaults(defineProps<{
     hours: [
       {label: 'Lun-Ven', value: '6h30-12h | 13h30-17h', isClosed: false},
       {label: 'Samedi', value: '6h30 - 12h00', isClosed: false},
-      {label: 'Dimanche', value: 'Fermé', isClosed: true}
+      {label: 'Dimanche', value: '', isClosed: true}
     ]
   })
 })
