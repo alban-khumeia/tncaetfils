@@ -4,12 +4,10 @@ export default defineNuxtConfig({
     compatibilityDate: '2025-07-15',
     devtools: {enabled: true},
 
-    // --- CORRECTION 1 : Configuration GitHub Pages ---
+    // 1. AJOUT INDISPENSABLE : Pour que le lien relatif "/contact"
+    // devienne correctement "/tncaetfils/contact" sur Github Pages.
     app: {
-        // Indispensable : dit à Nuxt que le site vit dans ce sous-dossier
         baseURL: '/tncaetfils/',
-        // Optionnel : range les fichiers JS/CSS proprement
-        buildAssetsDir: 'assets',
     },
 
     modules: [
@@ -24,22 +22,28 @@ export default defineNuxtConfig({
 
     fonts: {
         families: [
-            {name: 'Roboto', provider: 'google', weights: ['400', '500', '600', '700']},
-            {name: 'Lexend', provider: 'google', weights: ['400', '700', '900']}
+            {
+                name: 'Roboto',
+                provider: 'google',
+                weights: ['400', '500', '600', '700']
+            },
+            {
+                name: 'Lexend',
+                provider: 'google',
+                weights: ['400', '700', '900']
+            }
         ]
     },
 
     ssr: true,
 
-    // --- CORRECTION 2 : Calmer le jeu avec WordPress ---
+    // 2. AJOUT INDISPENSABLE : On calme le crawler pour éviter le 503 WP.
+    // On ne touche pas au preset, juste à la vitesse.
     nitro: {
         prerender: {
-            // Ralentit la génération : 1 page à la fois pour ne pas tuer ton WP (fix erreur 503)
-            concurrency: 1,
-            // Ajoute une pause de 500ms entre chaque page
-            interval: 500,
-            // Empêche le build d'échouer complètement si une seule page plante
-            failOnError: false,
+            concurrency: 1, // Une page à la fois
+            interval: 200,  // Petite pause de 200ms entre chaque appel API
+            failOnError: false // On tolère une erreur sans tout casser
         }
     },
 
