@@ -12,7 +12,7 @@ export default defineNuxtConfig({
         '@nuxt/image',
         '@nuxt/fonts',
         '@nuxt/icon',
-        '@nuxtjs/seo'
+        //'@nuxtjs/seo'
     ],
 
     css: ['~/assets/css/main.css'],
@@ -56,4 +56,12 @@ export default defineNuxtConfig({
     image: {
         domains: ['admin.tncaetfils.re'],
     },
+
+    nitro: {
+        prerender: {
+            concurrency: 1,
+            interval: 200, // Petit délai pour laisser respirer o2switch
+            failOnError: false // Important pour finir le build même si une image foire
+        }
+    }
 })
