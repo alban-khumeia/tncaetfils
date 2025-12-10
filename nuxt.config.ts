@@ -4,8 +4,6 @@ export default defineNuxtConfig({
     compatibilityDate: '2025-07-15',
     devtools: {enabled: true},
 
-    // 1. AJOUT INDISPENSABLE : Pour que le lien relatif "/contact"
-    // devienne correctement "/tncaetfils/contact" sur Github Pages.
     app: {
         baseURL: '/tncaetfils/',
     },
@@ -36,16 +34,6 @@ export default defineNuxtConfig({
     },
 
     ssr: true,
-
-    // 2. AJOUT INDISPENSABLE : On calme le crawler pour éviter le 503 WP.
-    // On ne touche pas au preset, juste à la vitesse.
-    nitro: {
-        prerender: {
-            concurrency: 1, // Une page à la fois
-            interval: 200,  // Petite pause de 200ms entre chaque appel API
-            failOnError: false // On tolère une erreur sans tout casser
-        }
-    },
 
     routeRules: {
         '/**': {prerender: true},
