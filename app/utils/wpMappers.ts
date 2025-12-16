@@ -58,6 +58,18 @@ const GRID_STYLES: Record<string, string> = {
     'tall': 'md:row-span-2'
 };
 
+// Fonction utilitaire pour nettoyer n'importe quelle URI venant de WP
+const cleanWpUri = (uri: string) => {
+    if (!uri) return '/'
+    // Enlève le dossier fantôme
+    let clean = uri.replace('/tncaetfils', '')
+    // Enlève le slash de fin pour éviter les erreurs "trailing-slash"
+    if (clean !== '/' && clean.endsWith('/')) {
+        clean = clean.slice(0, -1)
+    }
+    return clean || '/'
+}
+
 // --- MAPPERS ---
 export const mapHero = (wpData: any) => {
     return {
@@ -303,7 +315,7 @@ export const mapMenu = (menuData: any) => {
     const items = menuData?.menuItems?.nodes || [];
     return items.map((item: any) => ({
         name: item.label || '',
-        to: item.uri || '#', // Attention: WP peut renvoyer l'URL absolue ici, il faudra peut-être la nettoyer si tu veux du routing interne propre
+        to: cleanWpUri(item.uri) || '#', // Attention: WP peut renvoyer l'URL absolue ici, il faudra peut-être la nettoyer si tu veux du routing interne propre
         target: item.target || null
     }));
 };

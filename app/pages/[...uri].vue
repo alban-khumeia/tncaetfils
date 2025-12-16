@@ -68,6 +68,43 @@ if (import.meta.server && !data.value?.page) {
   });
 }
 
+// --- AJOUT SEO (Début) ---
+// On crée un raccourci vers les données de la page
+const pageNode = computed(() => data.value?.page);
+
+// Petite fonction utilitaire pour nettoyer les balises <p> de l'extrait WP
+const cleanText = (html: string) => html ? html.replace(/<[^>]+>/g, '').trim() : '';
+
+const featuredImage = computed(() => pageNode.value?.featuredImage?.node?.sourceUrl);
+
+useSeoMeta({
+  // Titre: Utilise le titre WP
+  title: () => pageNode.value?.title,
+
+  // Description: Utilise l'extrait WP (nettoyé) ou une phrase par défaut
+  description: () => cleanText(pageNode.value?.excerpt) || 'Quincaillerie et Matériaux de construction à Ravine des Cabris',
+
+  // Open Graph (Facebook/LinkedIn/WhatsApp)
+  ogTitle: () => pageNode.value?.title,
+  ogDescription: () => cleanText(pageNode.value?.excerpt),
+  // Récupère l'URL de l'image à la une si elle existe
+  ogImage: featuredImage,
+
+  // Twitter
+  twitterCard: 'summary_large_image',
+});
+
+if (!featuredImage.value) {
+  defineOgImageComponent('NuxtSeo', {
+    title: () => pageNode.value?.title || 'TNCA ET FILS', // Le titre s'écrira sur l'image
+    description: () => cleanText(pageNode.value?.excerpt), // La description aussi (optionnel)
+    theme: '#d92323', // Mets la couleur primaire du client ici !
+    colorMode: 'light', // ou 'light'
+    siteLogo: '/logo.png' // Assure-toi d'avoir un logo dans /public
+  })
+}
+// --- AJOUT SEO (Fin) ---
+
 // 2. MAPPING DONNÉES GLOBALES
 const globalData = computed(() => {
   return mapGlobalData(data.value);

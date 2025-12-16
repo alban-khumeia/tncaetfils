@@ -20,6 +20,14 @@ export const GET_PAGE_QUERY = `
   query GetPage($uri: ID!) {
     
     page(id: $uri, idType: URI) {
+    title
+      excerpt
+      featuredImage {
+        node {
+          sourceUrl
+        }
+      }
+      
       pageBuilder {
         flexContent {
           __typename
