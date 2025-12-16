@@ -60,7 +60,7 @@ export default defineNuxtConfig({
         },
         prerender: {
             crawlLinks: true,
-            concurrency: 1,
+            concurrency: 4,
             interval: 200,
             failOnError: false,
             routes: ['/'],
