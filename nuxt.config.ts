@@ -46,6 +46,7 @@ export default defineNuxtConfig({
     runtimeConfig: {
         public: {
             wpApiUrl: 'https://admin.tncaetfils.re/graphql',
+            wpContactUrl: 'https://admin.tncaetfils.re/wp-json/custom/v1/contact'
         }
     },
 
