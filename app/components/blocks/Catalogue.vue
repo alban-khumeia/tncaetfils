@@ -20,7 +20,7 @@
               aria-label="'Télécharger le ' + catalog.title"
           >
             <div v-if="catalog.badge"
-                 class="absolute top-3 right-3 z-10 bg-primary text-background px-3 py-1 text-xs md:text-sm font-bold uppercase tracking-wide shadow-sm rounded-sm">
+                 class="absolute top-3 right-3 z-10 bg-primary text-background px-3 py-1 text-xs md:text-sm font-bold uppercase tracking-wide shadow-sm rounded-sm drop-shadow-lg drop-shadow-secondary">
               {{ catalog.badge }}
             </div>
 
@@ -29,7 +29,7 @@
               <NuxtImg
                   :src="catalog.image"
                   :alt="catalog.title"
-                  class="w-full h-full object-cover md:object-contain transition-transform duration-500 group-hover:scale-105"
+                  class="w-full h-full object-cover md:object-cover object-top transition-transform duration-500 group-hover:scale-105"
                   width="400"
                   height="565"
                   format="avif,webp"

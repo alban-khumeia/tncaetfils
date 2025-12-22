@@ -31,6 +31,7 @@ import Categories from '~/components/blocks/Categories.vue';
 import Reassurance from '~/components/blocks/Reassurance.vue';
 import Equipe from '~/components/blocks/Équipe.vue';
 import Formulaire from '~/components/blocks/Formulaire.vue';
+import type {PageData} from "~/types/page";
 
 const componentRegistry: Record<string, any> = {
   'HeroSection': Hero,
@@ -49,20 +50,21 @@ const componentRegistry: Record<string, any> = {
 };
 
 const route = useRoute();
+const currentSlug = route.params.slug as string;
 const dev = import.meta.dev; // Pour le debug
 
 // Normalisation URI
 const uri = route.path === '/' ? '/' : route.path.replace(/\/$/, '');
 
 // 1. APPEL API
-const {data} = await useWpQuery(GET_PAGE_QUERY, {uri});
+const {data} = await useWpQuery<PageData>(GET_PAGE_QUERY, {uri});
 
 // --- AJOUT SEO (Début) ---
 // On crée un raccourci vers les données de la page
 const pageNode = computed(() => data.value?.page);
 
 // Petite fonction utilitaire pour nettoyer les balises <p> de l'extrait WP
-const cleanText = (html: string) => html ? html.replace(/<[^>]+>/g, '').trim() : '';
+const cleanText = (html: string | undefined | null) => html ? html.replace(/<[^>]+>/g, '').trim() : '';
 
 const featuredImage = computed(() => pageNode.value?.featuredImage?.node?.sourceUrl);
 
@@ -85,8 +87,8 @@ useSeoMeta({
 
 if (!featuredImage.value) {
   defineOgImageComponent('NuxtSeo', {
-    title: () => pageNode.value?.title || 'TNCA ET FILS', // Le titre s'écrira sur l'image
-    description: () => cleanText(pageNode.value?.excerpt), // La description aussi (optionnel)
+    title: pageNode.value?.title || 'TNCA ET FILS', // Le titre s'écrira sur l'image
+    description: cleanText(pageNode.value?.excerpt), // La description aussi (optionnel)
     theme: '#d92323', // Mets la couleur primaire du client ici !
     colorMode: 'light', // ou 'light'
     siteLogo: '/logo.png' // Assure-toi d'avoir un logo dans /public
@@ -119,6 +121,6 @@ const sections = computed(() => {
 
   const rawData = pageData.pageBuilder?.flexContent;
 
-  return mapPageBuilder(rawData || [], globalData.value, acfOptions);
+  return mapPageBuilder(rawData || [], currentSlug, globalData.value, acfOptions);
 });
 </script>

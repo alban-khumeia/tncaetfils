@@ -130,31 +130,34 @@ const toggleMobileMenu = () => {
 
 const route = useRoute()
 
-const forcedScrollPages = computed(() => {
-  const pagesToForce = ['Catalogues', 'Contact', 'Qui sommes-nous']
-  return items.value
-      .filter(item => pagesToForce.includes(item.name))
-      .map(item => item.to)
-})
+// --- Logique de la barre de navigation ---
 
-const isForceScrolled = computed(() => {
-  return forcedScrollPages.value.includes(route.path)
-})
+// 1. Définir les pages qui ont un Hero et doivent commencer avec une navbar transparente.
+const pagesWithHero = ['/', '/quincaillerie', '/transports-de-materiaux'];
 
+// 2. Vérifier si la page actuelle est l'une d'entre elles.
+const hasHero = computed(() => pagesWithHero.includes(route.path));
+
+// 3. Gérer l'état de scroll de la fenêtre.
 const isScrolledByWindow = ref(false)
 const scrollThreshold = 10
-
 const handleScroll = () => {
   isScrolledByWindow.value = window.scrollY > scrollThreshold;
 }
 
+// 4. Déterminer l'état final de la navbar.
 const { setHeaderHeight, setHeaderScrolled } = useHeaderHeight()
-
 const isScrolled = computed(() => {
-  const scrolled = isForceScrolled.value || isScrolledByWindow.value
+  // La navbar est "scrollée" (solide) si :
+  // - La page n'a PAS de Hero, OU
+  // - L'utilisateur a scrollé vers le bas.
+  const scrolled = !hasHero.value || isScrolledByWindow.value
   setHeaderScrolled(scrolled)
   return scrolled
 })
+
+
+// --- Styles dynamiques et hooks du cycle de vie ---
 
 const logoClasses = computed(() => {
   const base = 'h-12 md:h-16 w-auto object-contain transition-all duration-300'

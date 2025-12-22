@@ -51,6 +51,9 @@ const componentRegistry: Record<string, any> = {
 };
 
 const route = useRoute();
+const currentSlug = Array.isArray(route.params.uri)
+    ? route.params.uri.join('/')
+    : route.params.uri;
 const dev = import.meta.dev;
 
 // Normalisation URI (identique à index.vue)
@@ -130,7 +133,7 @@ const sections = computed(() => {
 
   const rawData = pageData.pageBuilder?.flexContent;
 
-  return mapPageBuilder(rawData || [], globalData.value, acfOptions);
+  return mapPageBuilder(rawData || [], currentSlug, globalData.value, acfOptions);
 });
 
 // 4. Méta-données (SEO)

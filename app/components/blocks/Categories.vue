@@ -14,6 +14,7 @@
             :icon="category.icon"
             :title="category.title"
             :description="category.description"
+            :to="category.to"
         />
       </div>
     </div>
@@ -21,10 +22,13 @@
 </template>
 
 <script setup lang="ts">
+// Définition de l'interface qui correspond à la sortie de 'mapCategoryList'
 export interface Category {
   title: string
   description: string
   icon: string
+  to?: string
+  slug?: string      // Présent dans le mapper, utile si besoin de clés uniques
 }
 
 const props = defineProps<{
@@ -33,13 +37,14 @@ const props = defineProps<{
   subtitle?: string
 }>()
 
+// Logique de grille responsive (inchangée)
 const gridColsClass = computed(() => {
   const count = props.categories.length
 
   if (count === 2) {
     return 'md:grid-cols-2'
   }
-
+  // Par défaut 3 colonnes, s'adapte si besoin
   return 'md:grid-cols-2 lg:grid-cols-3'
 })
 </script>

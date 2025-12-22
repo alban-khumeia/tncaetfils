@@ -18,7 +18,6 @@
     <div class="relative container mx-auto px-4 z-20">
 
       <div class="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-8 mb-8 md:mb-12">
-
         <div class="text-center md:text-left border-b border-white/10 pb-6 md:border-none md:pb-0">
           <h3 class="font-heading font-black uppercase text-2xl md:text-xl mb-3 drop-shadow-md tracking-wide">
             TNCA ET FILS
@@ -85,7 +84,6 @@
 
       <div
           class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-8 mb-8 border-t border-white/10 md:border-none pt-8 md:pt-0">
-
         <div class="md:col-span-1 text-center px-4">
           <h4 class="font-heading font-black uppercase text-base mb-2 drop-shadow text-white/80">
             Tarification
@@ -120,7 +118,7 @@
 
       <div
           class="border-t border-background/20 pt-8 text-center text-xs md:text-sm opacity-75 drop-shadow flex flex-col md:block gap-4">
-        <p>&copy; {{ new Date().getFullYear() }} TNCA ET FILS. Tous droits réservés.</p>
+        <p>© {{ new Date().getFullYear() }} TNCA ET FILS. Tous droits réservés.</p>
         <div class="flex flex-wrap justify-center gap-x-4 gap-y-2">
           <NuxtLink
               v-for="link in legalNav"
@@ -133,7 +131,30 @@
           </NuxtLink>
         </div>
 
-        <div class="mt-4 pt-4 border-t border-white/10 md:border-none md:pt-0 md:mt-2">
+        <div class="pt-4 border-t border-white/10 md:border-none md:pt-0 md:mt-4">
+          <div class="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-8">
+            <div class="flex items-center gap-4 shrink-0  p-2 rounded shadow-sm">
+              <NuxtImg
+                  src="/logo-region.jpg"
+                  alt="Région Réunion"
+                  class="h-10 w-auto object-contain"
+                  loading="lazy"
+              />
+              <NuxtImg
+                  src="/logo-ue-feder.png"
+                  alt="L'Europe s'engage à La Réunion"
+                  class="h-10 w-auto object-contain bg-white/90"
+                  loading="lazy"
+              />
+            </div>
+            <p class="font-sans text-[10px] md:text-xs leading-tight text-center md:text-left opacity-80 max-w-xl">
+              Ce site a été financé par l’Union Européenne dans le cadre du programme FEDER-FSE+ Réunion dont l’Autorité
+              de gestion est la Région Réunion. L’Europe s’engage à La Réunion avec le fonds FEDER.
+            </p>
+          </div>
+        </div>
+
+        <div class="pt-4 border-t border-white/10 md:border-none md:pt-0 md:mt-4">
           <a
               href="https://khumeia-lab.com/"
               target="_blank"

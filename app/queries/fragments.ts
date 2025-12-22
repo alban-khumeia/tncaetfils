@@ -212,6 +212,14 @@ fragment CategoriesFragment on PageBuilderFlexContentCategoriesLayoutLayout {
     icon
     title
     description
+    selectedProducts {
+      nodes {
+        ... on Produit {
+          id # On récupère le Global ID
+          databaseId
+        }
+      }
+    }
   }
 }
 `;
