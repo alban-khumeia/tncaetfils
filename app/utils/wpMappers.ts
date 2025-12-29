@@ -294,6 +294,11 @@ const mapFormulaire = (block: any) => {
     };
 };
 
+const mapContent = (block: any) => ({
+    title: block.title || '',
+    content: block.content || ''
+});
+
 // --- MAPPERS MENU & GLOBAL ---
 export const mapMenu = (menuData: any) => {
     const items = menuData?.menuItems?.nodes || [];
@@ -326,7 +331,8 @@ const TYPE_TO_COMPONENT: Record<string, string> = {
     'PageBuilderFlexContentFaqLayoutLayout': 'FaqSection',
     'PageBuilderFlexContentReassuranceLayoutLayout': 'Reassurance',
     'PageBuilderFlexContentEquipeLayoutLayout': 'Equipe',
-    'PageBuilderFlexContentFormulaireLayoutLayout': 'Formulaire'
+    'PageBuilderFlexContentFormulaireLayoutLayout': 'Formulaire',
+    'PageBuilderFlexContentContentLayoutLayout': 'ContentSection'
 };
 
 export const mapPageBuilder = (blocks: any[], parentSlug: string = '', globalData: any = null, acfOptions: any = {}) => {
@@ -357,6 +363,7 @@ export const mapPageBuilder = (blocks: any[], parentSlug: string = '', globalDat
                 case 'Reassurance': props = mapReassurance(block); break;
                 case 'Equipe': props = mapEquipe(block); break;
                 case 'Formulaire': props = mapFormulaire(block); break;
+                case 'ContentSection': props = mapContent(block); break;
                 default: return null;
             }
         } catch (error) {

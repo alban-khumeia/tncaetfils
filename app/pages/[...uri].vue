@@ -33,6 +33,7 @@ import Categories from '~/components/blocks/Categories.vue';
 import Reassurance from '~/components/blocks/Reassurance.vue';
 import Equipe from '~/components/blocks/Équipe.vue';
 import Formulaire from '~/components/blocks/Formulaire.vue';
+import Content from '~/components/blocks/Content.vue';
 
 const componentRegistry: Record<string, any> = {
   'HeroSection': Hero,
@@ -48,6 +49,7 @@ const componentRegistry: Record<string, any> = {
   'Reassurance': Reassurance,
   'Equipe': Equipe,
   'Formulaire': Formulaire,
+  'ContentSection': Content,
 };
 
 const route = useRoute();

@@ -13,7 +13,8 @@ import {
     CATEGORIES_FRAGMENT,
     REASSURANCE_FRAGMENT,
     EQUIPE_FRAGMENT,
-    FORMULAIRE_FRAGMENT
+    FORMULAIRE_FRAGMENT,
+    CONTENT_FRAGMENT
 } from './fragments';
 
 export const GET_PAGE_QUERY = `
@@ -46,6 +47,7 @@ export const GET_PAGE_QUERY = `
           ...ReassuranceFragment
           ...EquipeFragment
           ...FormulaireFragment
+          ...ContentFragment
         }
       }
     }
@@ -76,4 +78,5 @@ export const GET_PAGE_QUERY = `
   ${REASSURANCE_FRAGMENT}
   ${EQUIPE_FRAGMENT}
   ${FORMULAIRE_FRAGMENT}
+  ${CONTENT_FRAGMENT}
 `;

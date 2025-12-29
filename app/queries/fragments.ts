@@ -273,3 +273,10 @@ export const FORMULAIRE_FRAGMENT = `
     submitButtonText
   }
 `;
+
+export const CONTENT_FRAGMENT = `
+  fragment ContentFragment on PageBuilderFlexContentContentLayoutLayout {
+    title
+    content
+  }
+`;
