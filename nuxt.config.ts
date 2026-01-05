@@ -63,7 +63,7 @@ export default defineNuxtConfig({
             crawlLinks: true,
             concurrency: 4,
             interval: 200,
-            failOnError: false,
+            failOnError: true,
             routes: ['/'],
         }
     },
@@ -74,7 +74,7 @@ export default defineNuxtConfig({
         name: 'TNCA ET FILS',
         description: 'Quincaillerie et Matériaux de construction à Ravine des Cabris',
         defaultLocale: 're',
-        indexable: process.env.NUXT_SITE_INDEXABLE === 'true',
+        indexable: true,
     },
 
     robots: {},
