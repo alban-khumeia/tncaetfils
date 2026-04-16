@@ -1,6 +1,6 @@
 export const GET_PRODUCTS_BY_IDS = `
   query getProductsByIds($ids: [ID]) {
-    produits(where: { in: $ids }) {
+    produits(first: 100, where: { in: $ids }) {
       nodes {
         databaseId
         title

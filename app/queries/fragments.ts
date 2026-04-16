@@ -212,7 +212,7 @@ fragment CategoriesFragment on PageBuilderFlexContentCategoriesLayoutLayout {
     icon
     title
     description
-    selectedProducts {
+    selectedProducts(first: 100) {
       nodes {
         ... on Produit {
           id # On récupère le Global ID
